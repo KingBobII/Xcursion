@@ -1,2 +1,13 @@
-<h1>Excursion#edit</h1>
-<p>Find me in app/views/excursion/edit.html.erb</p>
+<div class="container">
+  <h1>Edit your Excursion</h1>
+  <%= simple_form_for @excursion do |f| %>
+    <%= f.input :title %>
+    <%= f.input :city, as: :text, input_html: { rows: 4 } %>
+    <%= f.input :capacity%>
+    <%= f.input :length %>
+    <%= f.input :description, as: :text, input_html: { rows: 4 } %>
+    <%= f.input :image, as: :text, input_html: { rows: 4 } %>
+
+    <%= f.button :submit, "Update Excursion", class: "btn btn-primary" %>
+  <% end %>
+</div>
