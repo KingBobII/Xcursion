@@ -1,2 +1,12 @@
-<h1>Excursion#index</h1>
-<p>Find me in app/views/excursion/index.html.erb</p>
+<div class="container my-4">
+
+<h1>Excursions</h1>
+
+<ul>
+  <% @excursions.each do |excursion| %>
+    <li><%= excursion.title %></li>
+  <% end %>
+</ul>
+
+<p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
+
