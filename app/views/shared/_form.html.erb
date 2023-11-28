@@ -1,0 +1,11 @@
+<%= simple_form_for excursion do |form| %>
+  <%= form.input :title, placeholder: 'Enter the title' %>
+  <%= form.input :image, placeholder: 'Enter the image URL' %>
+  <%= form.input :city, placeholder: 'Enter the city' %>
+  <%= form.input :capacity, placeholder: 'Enter the capacity' %>
+  <%= form.input :length, placeholder: 'Enter the length' %>
+  <%= form.input :description, placeholder: 'Enter the description' %>
+  <%= form.input :category, collection: ['Family', 'Friends', 'Business', 'Romantic'], prompt: 'Select a category', placeholder: 'Select a category' %>
+
+  <%= form.button :submit %>
+<% end %>

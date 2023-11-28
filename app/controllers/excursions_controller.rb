@@ -1,4 +1,8 @@
 class ExcursionsController < ApplicationController
+
+  # before_action :set_garden, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: [ :index ]
+
   def index
     @excursions = Excursion.all
   end
@@ -6,15 +10,23 @@ class ExcursionsController < ApplicationController
   def show
     @excursion = Excursion.find(params[:id])
   end
-
+  
   def new
+    @excursion = Excursion.new
   end
 
   def create
+    @excursion = Excursion.new(excursion_params)
+    @user = current_user
+    @excursion.user = @user
+    if @excursion.save
+      redirect_to root_path, notice: "Excursion was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-
+  
   def edit
-
   end
 
   def update
@@ -49,4 +61,3 @@ class ExcursionsController < ApplicationController
   def excursion_params
     params.require(:excursion).permit(:title, :image, :city, :capacity, :category, :length, :description)
   end
-end
