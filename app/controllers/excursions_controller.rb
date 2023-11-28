@@ -1,7 +1,6 @@
 class ExcursionsController < ApplicationController
-
-  # before_action :set_garden, only: %i[ show edit update destroy ]
-  skip_before_action :authenticate_user!, only: [ :index ]
+  before_action :find_excursion, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @excursions = Excursion.all
@@ -10,7 +9,7 @@ class ExcursionsController < ApplicationController
   def show
     @excursion = Excursion.find(params[:id])
   end
-  
+
   def new
     @excursion = Excursion.new
   end
@@ -25,7 +24,7 @@ class ExcursionsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   def edit
   end
 
@@ -34,7 +33,7 @@ class ExcursionsController < ApplicationController
       # Checks if the excursion object is successfully updated using the provided parameters.
       # '@excursion' likely refers to an instance variable holding an excursion object.
 
-      redirect_to user_excursion_path(current_user, @excursion), notice: 'Excursion was successfully updated.'
+      redirect_to excursion_path, notice: 'Excursion was successfully updated.'
       # Redirects the user to a specific route after a successful update.
       # The 'notice' parameter provides a success message that will be displayed to the user.
     else
@@ -61,3 +60,4 @@ class ExcursionsController < ApplicationController
   def excursion_params
     params.require(:excursion).permit(:title, :image, :city, :capacity, :category, :length, :description)
   end
+end

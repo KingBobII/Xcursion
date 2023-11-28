@@ -1,7 +1,7 @@
 <div class="container my-4">
-<h1><%= @excursions.title %></h1>
-<p><strong>Description:</strong> <%= @excursions.description %></p>
-<p><strong>City:</strong><%=  @excursions.city %></p>
+<h1><%= @excursion.title %></h1>
+<p><strong>Description:</strong> <%= @excursion.description %></p>
+<p><strong>City:</strong><%=  @excursion.city %></p>
 
 <%= link_to 'Back', root_path %>
-
+<%= link_to 'Edit', edit_excursion_path %>
