@@ -1,9 +1,10 @@
-class ExcursionController < ApplicationController
-  before_action :find_excursion, only: [:edit, :update]
+class ExcursionsController < ApplicationController
   def index
+    @excursions = Excursion.all
   end
 
   def show
+    @excursion = Excursion.find(params[:id])
   end
 
   def new
