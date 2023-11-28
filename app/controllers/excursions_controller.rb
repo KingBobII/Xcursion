@@ -4,7 +4,7 @@ class ExcursionsController < ApplicationController
   end
 
   def show
-    @excursions = Excursion.find(params[:id])
+    @excursion = Excursion.find(params[:id])
   end
 
   def new
