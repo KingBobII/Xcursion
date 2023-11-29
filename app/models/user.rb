@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :participants, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
 end

@@ -5,3 +5,4 @@
 
 <%= link_to 'Back', root_path %>
 <%= link_to 'Edit', edit_excursion_path %>
+<%= button_to "Delete this excursion", @excursion, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

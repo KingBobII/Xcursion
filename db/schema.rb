@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_102133) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_104616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +32,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102133) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "average_rating"
     t.index ["user_id"], name: "index_excursions_on_user_id"
+  end
+
+  create_table "excursions_itineraries", id: false, force: :cascade do |t|
+    t.bigint "excursion_id", null: false
+    t.bigint "itinerary_id", null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
@@ -42,8 +48,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102133) do
     t.bigint "excursion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "end_time"
     t.index ["excursion_id"], name: "index_itineraries_on_excursion_id"
     t.index ["user_id"], name: "index_itineraries_on_user_id"
+  end
+
+  create_table "itinerary_excursions", force: :cascade do |t|
+    t.bigint "itinerary_id", null: false
+    t.bigint "excursion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["excursion_id"], name: "index_itinerary_excursions_on_excursion_id"
+    t.index ["itinerary_id"], name: "index_itinerary_excursions_on_itinerary_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -71,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102133) do
     t.bigint "excursion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_rating"
     t.index ["excursion_id"], name: "index_reviews_on_excursion_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -103,6 +120,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102133) do
   add_foreign_key "excursions", "users"
   add_foreign_key "itineraries", "excursions"
   add_foreign_key "itineraries", "users"
+  add_foreign_key "itinerary_excursions", "excursions"
+  add_foreign_key "itinerary_excursions", "itineraries"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "participants", "itineraries"

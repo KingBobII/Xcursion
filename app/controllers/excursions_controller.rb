@@ -43,6 +43,16 @@ class ExcursionsController < ApplicationController
   end
 
   def destroy
+    @excursion.destroy
+    # if @excursion.destroy
+    #   redirect_to excursion_path, notice: "Excursion was successfully deleted."
+    # else
+    #   render :show, notice: "Excursion cannot be deleted, please try again!"
+    # end
+    respond_to do |format|
+      format.html { redirect_to excursions_path, notice: "Excursion was successfully deleted." }
+      format.json { head :no_content }
+    end
   end
 
   def like
