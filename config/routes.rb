@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'participants/new'
-  get 'participants/create'
   devise_for :users
   root to: "excursions#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
