@@ -49,7 +49,8 @@ puts "creating intineraries"
     start_time: Faker::Time.forward(days: 30, period: :morning),
     excursion_id: Excursion.all.sample.id,
     user: User.all.sample,
-    description: Faker::Lorem.sentence
+    description: Faker::Lorem.sentence,
+    title: Faker::Lorem.words(number: 3).join(' ')
   )
 end
 
