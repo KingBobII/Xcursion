@@ -10,11 +10,11 @@
 # Create Users
 require 'faker'
 puts "clearing databse"
-User.destroy_all
-Excursion.destroy_all
-Participant.destroy_all
 Review.destroy_all
+Participant.destroy_all
 Itinerary.destroy_all
+Excursion.destroy_all
+User.destroy_all
 
 puts "creating users"
 
@@ -47,7 +47,7 @@ puts "creating intineraries"
 5.times do
   Itinerary.create(
     start_time: Faker::Time.forward(days: 30, period: :morning),
-    excursion: Excursion.all.sample,
+    excursion_id: Excursion.all.sample.id,
     user: User.all.sample,
     description: Faker::Lorem.sentence
   )
