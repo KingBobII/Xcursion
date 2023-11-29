@@ -1,0 +1,9 @@
+<div class="container my-4">
+<h1><%= @itinerary.title %></h1>
+<p><strong>From:</strong><%=  @itinerary.start_date%></p>
+<p><strong>To:</strong><%=  @itinerary.end_date%></p>
+<p><strong>Description:</strong> <%= @itinerary.description %></p>
+
+<%= link_to 'Back', itineraries_path %>
+<%= link_to 'Edit', edit_itinerary_path %>
+<%= button_to "Delete this excursion", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>

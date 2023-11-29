@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Edit your Itinerary</h1>
+  <%= simple_form_for @excursion do |f| %>
+    <%= f.input :title %>
+    <%= f.input :start_date, as: :text, input_html: { rows: 4 } %>
+    <%= f.input :end_date, as: :text, input_html: { rows: 4 } %>
+    <%= f.input :description, as: :text, input_html: { rows: 4 } %>
+    <%= f.button :submit, "Update Itinerary", class: "btn btn-primary" %>
+  <% end %>
+</div>

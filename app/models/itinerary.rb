@@ -4,5 +4,5 @@ class Itinerary < ApplicationRecord
   has_many :participants, dependent: :destroy
   has_many :chat_rooms
 
-  validates :start_time, :end_time, :description, presence: true
+  validates :start_time, :end_time, :description, :title, presence: true
 end
