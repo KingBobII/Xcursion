@@ -70,6 +70,8 @@ puts "creating participants"
   Participant.create(
     user: User.all.sample,
     itinerary: Itinerary.all.sample,
-    rsvp: 0
+    rsvp: 0,
+    username: Faker::Internet.username,
+    email: Faker::Internet.email
   )
 end

@@ -4,9 +4,9 @@
 
 <ul>
   <% @excursions.each do |excursion| %>
-    <li><%= excursion.title %></li>
+    <li><%= link_to excursion.title, excursion_path(excursion) %>
+    </li>
   <% end %>
 </ul>
 
 <p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
-
