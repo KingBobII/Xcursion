@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :excursions do
     resources :itineraries
+  end
 
   resources :itineraries do
     resources :participants, only: [:new, :create, :update ,:delete]

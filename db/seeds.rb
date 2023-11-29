@@ -26,6 +26,7 @@ puts "creating users"
     bio: Faker::Lorem.paragraph
   )
 end
+puts "#{User.count} users created"
 
 puts "creating xcursions"
 # Create Xcursions
@@ -41,18 +42,23 @@ puts "creating xcursions"
     description: Faker::Lorem.paragraph
   )
 end
+puts "#{Excursion.count} Excursions created"
 
 puts "creating intineraries"
 # Create Itineraries
 5.times do
-  Itinerary.create(
-    start_time: Faker::Time.forward(days: 30, period: :morning),
+  time = Faker::Time.forward(days: 30, period: :morning)
+  length = [3, 2, 1, 5, 6]
+  Itinerary.create!(
+    start_time: time,
+    end_time: time + length.sample.hours,
     excursion_id: Excursion.all.sample.id,
     user: User.all.sample,
     description: Faker::Lorem.sentence,
     title: Faker::Lorem.words(number: 3).join(' ')
   )
 end
+puts "#{Itenarary.count} itineraries created"
 
 puts "creating reviews"
 # Create Reviews
@@ -63,6 +69,7 @@ puts "creating reviews"
     excursion: Excursion.all.sample
   )
 end
+puts "#{Review.count} Reviews created"
 
 puts "creating participants"
 # Create Participants
@@ -75,3 +82,4 @@ puts "creating participants"
     email: Faker::Internet.email
   )
 end
+puts "#{Participant.count} Participants created"

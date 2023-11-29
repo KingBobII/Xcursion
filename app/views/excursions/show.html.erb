@@ -5,4 +5,5 @@
 
 <%= link_to 'Back', root_path %>
 <%= link_to 'Edit', edit_excursion_path %>
-<%= button_to "Delete this excursion", @excursion, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
+<%#= button_to "Delete this excursion", @excursion, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
