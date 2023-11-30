@@ -58,7 +58,7 @@ puts "creating intineraries"
     title: Faker::Lorem.words(number: 3).join(' ')
   )
 end
-puts "#{Itenarary.count} itineraries created"
+puts "#{Itinerary.count} itineraries created"
 
 puts "creating reviews"
 # Create Reviews
