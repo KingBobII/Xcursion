@@ -52,7 +52,6 @@ puts "creating intineraries"
   Itinerary.create!(
     start_time: time,
     end_time: time + length.sample.hours,
-    excursion_id: Excursion.all.sample.id,
     user: User.all.sample,
     description: Faker::Lorem.sentence,
     title: Faker::Lorem.words(number: 3).join(' ')
