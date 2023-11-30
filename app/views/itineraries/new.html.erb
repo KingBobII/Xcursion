@@ -1,11 +1,53 @@
-<div class="container py-5">
-  <h1>Create a new itinerary</h1>
+<!-- itineraries/new.html.erb -->
+<h1>Create a New Itinerary</h1>
 
-  <%= render "shared/form", excursion: @itinerary %>
+<%= form_with(model: @itinerary, url: itineraries_path, method: :post) do |form| %>
+  <%# Display validation errors, if any %>
+  <% if @itinerary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
+      <ul>
+        <% @itinerary.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <br>
-
-  <div>
-    <%= link_to "Show all excursions", itineraries_path %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
-</div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.datetime_field :end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <!-- Collection select for choosing the excursion -->
+  <div class="field">
+    <%= form.label :excursion_ids, 'Excursions' %>
+    <% Excursion.all.each do |excursion| %>
+      <div class="collection-check-box">
+        <%= check_box_tag 'itinerary[excursion_ids][]', excursion.id, @itinerary.excursion_ids.include?(excursion.id), id: "excursion_#{excursion.id}" %>
+        <%= label_tag "excursion_#{excursion.id}", excursion.title %>
+      </div>
+    <% end %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit 'Create Itinerary' %>
+  </div>
+<% end %>
