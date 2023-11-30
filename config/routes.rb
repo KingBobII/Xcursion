@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "excursions#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :excursions
+  resources :excursions do
+    resources :reviews, only: [:new, :create, :edit, :update, :delete]
+  end
 
   resources :itineraries do
     resources :participants, only: [:new, :create, :update ,:delete]
