@@ -30,7 +30,7 @@ puts "#{User.count} users created"
 
 puts "creating xcursions"
 # Create Xcursions
-5.times do
+15.times do
   Excursion.create(
     title: Faker::Lorem.words(number: 3).join(' '),
     image: 'https://media.timeout.com/images/105750719/750/422/image.jpg',
@@ -46,7 +46,7 @@ puts "#{Excursion.count} Excursions created"
 
 puts "creating intineraries"
 # Create Itineraries
-5.times do
+15.times do
   time = Faker::Time.forward(days: 30, period: :morning)
   length = [3, 2, 1, 5, 6]
   Itinerary.create!(
@@ -62,18 +62,19 @@ puts "#{Itinerary.count} itineraries created"
 
 puts "creating reviews"
 # Create Reviews
-5.times do
+15.times do
   Review.create(
     content: Faker::Lorem.paragraph,
     user: User.all.sample,
-    excursion: Excursion.all.sample
+    excursion: Excursion.all.sample,
+    user_rating: rand(1..5)
   )
 end
 puts "#{Review.count} Reviews created"
 
 puts "creating participants"
 # Create Participants
-5.times do
+15.times do
   Participant.create(
     user: User.all.sample,
     itinerary: Itinerary.all.sample,
