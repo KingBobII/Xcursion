@@ -1,3 +1,13 @@
-<% @itineraries.each do |itinerary| %>
-<%= itinerary.title %>
+<h1>Itineraries</h1>
+
+<% if @itineraries.any? %>
+  <ul>
+    <% @itineraries.each do |itinerary| %>
+      <li><%= itinerary.title %></li>
+      <!-- Display other itinerary attributes as needed -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>No itineraries found.</p>
 <% end %>
+

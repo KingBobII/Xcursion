@@ -7,4 +7,5 @@ class Itinerary < ApplicationRecord
   has_many :chat_rooms
 
   validates :start_time, :end_time, :description, :title, presence: true
+  validates :title, uniqueness: true
 end
