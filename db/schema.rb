@@ -36,11 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_133130) do
     t.index ["user_id"], name: "index_excursions_on_user_id"
   end
 
-  create_table "excursions_itineraries", id: false, force: :cascade do |t|
-    t.bigint "excursion_id", null: false
-    t.bigint "itinerary_id", null: false
-  end
-
   create_table "itineraries", force: :cascade do |t|
     t.date "start_time"
     t.text "description"
