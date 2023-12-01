@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_133130) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_100340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_133130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "average_rating"
+    t.text "review"
     t.index ["user_id"], name: "index_excursions_on_user_id"
   end
 
@@ -40,12 +41,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_133130) do
     t.date "start_time"
     t.text "description"
     t.bigint "user_id", null: false
-    t.bigint "excursion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "end_time"
     t.string "title"
-    t.index ["excursion_id"], name: "index_itineraries_on_excursion_id"
     t.index ["user_id"], name: "index_itineraries_on_user_id"
   end
 
@@ -116,7 +115,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_133130) do
 
   add_foreign_key "chat_rooms", "itineraries"
   add_foreign_key "excursions", "users"
-  add_foreign_key "itineraries", "excursions"
   add_foreign_key "itineraries", "users"
   add_foreign_key "itinerary_excursions", "excursions"
   add_foreign_key "itinerary_excursions", "itineraries"

@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   def create
     @excursion = Excursion.find(params[:excursion_id])
     @review = Review.new(review_params)
-    @excursion.review =
+    @excursion.review = @review
     @user = current_user
     @review.user = @user
 
