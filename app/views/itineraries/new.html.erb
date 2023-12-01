@@ -1,7 +1,7 @@
 <!-- itineraries/new.html.erb -->
 <h1>Create a New Itinerary</h1>
 
-<%= form_with(model: @itinerary, url: itineraries_path, method: :post) do |form| %>
+<%= simple_form_for(@itinerary, url: itineraries_path, method: :post) do |form| %>
   <%# Display validation errors, if any %>
   <% if @itinerary.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.input_field :title %>
   </div>
 
   <div class="field">
@@ -36,12 +36,11 @@
 
   <!-- Collection select for choosing the excursion -->
   <div class="field">
-    <%= form.label :excursion_ids, 'Excursions' %>
-    <% Excursion.all.each do |excursion| %>
-      <div class="collection-check-box">
-        <%= check_box_tag 'itinerary[excursion_ids][]', excursion.id, @itinerary.excursion_ids.include?(excursion.id), id: "excursion_#{excursion.id}" %>
-        <%= label_tag "excursion_#{excursion.id}", excursion.title %>
-      </div>
+    <%= simple_fields_for :itinerary_excursions do |ie| %>
+     <%= ie.collection_check_boxes :excursion_ids,
+                                   Excursion.find_each,
+                                   :id, :title,
+                                   error: false %>
     <% end %>
   </div>
 

@@ -1,13 +1,28 @@
-<h1>Itineraries</h1>
-
+<div class="container">
+<h1>My Itineraries</h1>
 <% if @itineraries.any? %>
-  <ul>
+  <div class="row">
     <% @itineraries.each do |itinerary| %>
-      <li><%= itinerary.title %></li>
-      <!-- Display other itinerary attributes as needed -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= itinerary.title %></h5>
+            <p class="card-text"><%= itinerary.start_time %> - <%= itinerary.end_time %></p>
+            <p class="card-text"><%= itinerary.description %></p>
+            <ul class="list-group">
+              <% itinerary.excursions.each do |excursion| %>
+                <li class="list-group-item"><%= excursion.title %></li>
+              <% end %>
+            </ul>
+            <%= link_to 'View', itinerary_path(itinerary) %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <p>No itineraries found.</p>
 <% end %>
-
+<%= link_to 'Back', root_path %>
+<%= link_to 'Create a itinerary', new_itinerary_path %>
+</div>
