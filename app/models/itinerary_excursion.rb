@@ -1,5 +1,5 @@
 class ItineraryExcursion < ApplicationRecord
-  belongs_to :intinerary
+  belongs_to :itinerary
   belongs_to :excursion
 
   validates :itinerary, presence: true

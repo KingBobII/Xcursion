@@ -5,5 +5,5 @@
 <p><strong>Description:</strong> <%= @itinerary.description %></p>
 
 <%= link_to 'Back', itineraries_path %>
-<%= link_to 'Edit', edit_excursion_itinerary_path %>
+<%= link_to 'Edit', edit_itinerary_path %>
 <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
