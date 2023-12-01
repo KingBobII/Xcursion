@@ -1,4 +1,4 @@
-<%= simple_form_for @review do |form| %>
+<%= simple_form_for [@excursion, @review] do |form| %>
   <%= form.input :content, label: 'Review Content' %>
   <%= form.input :user_rating, label: 'Rating', as: :select, collection: 1..5 %>
   <%= form.association :excursion, label: 'Excursion' %>
