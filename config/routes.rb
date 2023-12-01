@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "excursions#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :excursions do
-    resources :reviews, only: [:new, :create, :edit, :update, :delete]
+    resources :reviews
   end
 
   resources :itineraries do

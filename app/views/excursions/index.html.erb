@@ -1,14 +1,16 @@
 <div class="container my-4">
 
-<h1>Excursions</h1>
-<p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
+  <h1>Excursions</h1>
+  <p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
 
-<ul>
-  <% @excursions.each do |excursion| %>
-    <li><%= link_to excursion.title, excursion_path(excursion) %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to "Create an excursion", new_excursion_path%>
-<%= link_to "My itineraries", itineraries_path %>
+  <ul>
+    <% @excursions.each do |excursion| %>
+      <li><%= link_to excursion.title, excursion_path(excursion) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Create an excursion", new_excursion_path%>
+  <%= link_to "My itineraries", itineraries_path %>
 </div>
+
