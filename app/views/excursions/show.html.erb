@@ -1,9 +1,33 @@
-<div class="container my-4">
-<h1><%= @excursion.title %></h1>
-<p><strong>Description:</strong> <%= @excursion.description %></p>
-<p><strong>City:</strong><%=  @excursion.city %></p>
+<div class="container my-4 excursion-container">
+  <div class="excursion-infos">
+    <h1><%= @excursion.title %></h1>
+    <p><strong>Description:</strong> <%= @excursion.description %></p>
+    <p><strong>City:</strong> <%= @excursion.city %></p>
 
-<%= link_to 'Back', root_path %>
-<%= link_to 'Edit', edit_excursion_path %>
-<%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
-<%#= button_to "Delete this excursion", @excursion, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <div class="reviews">
+      <% if @excursion.reviews.present? %>
+        <h2>Latest Reviews</h2>
+        <% @excursion.reviews.each do |review| %>
+          <p><strong>User:</strong> <%= review.user.username %></p>
+          <p><strong>Content:</strong> <%= review.content %></p>
+          <p><strong>Rating:</strong> <%= star_rating(review.user_rating) %><%= link_to 'Edit this review', edit_excursion_review_path(@excursion), class: "btn btn-secondary" %></p>
+          <hr>
+        <% end %>
+      <% else %>
+        <p>No reviews yet. Be the first to add one!</p>
+      <% end %>
+      <div id="reviews" class="reviews">
+        <% @excursion.reviews.order(created_at: :desc).each do |review| %>
+          <!-- Display each review -->
+        <% end %>
+      </div>
+      <%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+  <div class="links">
+    <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
+    <%= link_to 'Edit', edit_excursion_path(@excursion), class: "btn btn-primary" %>
+    <%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+  </div>
+</div>
