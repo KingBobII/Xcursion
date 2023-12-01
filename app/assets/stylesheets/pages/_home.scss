@@ -1,1 +1,29 @@
 // Specific CSS for your home-page
+.excursion-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
+}
+
+.excursion-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.excursion-card:hover {
+  transform: scale(1.05);
+}
+
+.image-of-excursion {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.btn {
+  margin-top: 1rem;
+}
