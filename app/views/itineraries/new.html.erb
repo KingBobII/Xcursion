@@ -1,52 +1,55 @@
-<!-- itineraries/new.html.erb -->
-<h1>Create a New Itinerary</h1>
+<div class="container">
+  <h1>Create a New Itinerary</h1>
 
-<%= simple_form_for(@itinerary, url: itineraries_path, method: :post) do |form| %>
-  <%# Display validation errors, if any %>
-  <% if @itinerary.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
-      <ul>
-        <% @itinerary.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+  <%= simple_form_for(@itinerary, url: itineraries_path, method: :post, html: { class: 'form-horizontal' }) do |form| %>
+    <% if @itinerary.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h4><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h4>
+        <ul>
+          <% @itinerary.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title, class: "control-label" %>
+      <%= form.input_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :start_time, class: "control-label" %>
+      <%= form.datetime_field :start_time, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :end_time, class: "control-label" %>
+      <%= form.datetime_field :end_time, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description, class: "control-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <!-- Collection select for choosing the excursion -->
+    <div class="form-group">
+      <%= form.label "Excursions", class: "control-label" %>
+      <div class="checkbox">
+        <%= simple_fields_for :itinerary_excursions do |ie| %>
+          <% Excursion.find_each do |excursion| %>
+            <div class="form-check">
+              <%= ie.check_box :excursion_ids, { multiple: true }, excursion.id, nil %>
+              <%= ie.label excursion.title, class: "form-check-label" %>
+            </div>
+          <% end %>
         <% end %>
-      </ul>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit 'Submit', class: "btn btn-success" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.input_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.datetime_field :start_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.datetime_field :end_time %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <!-- Collection select for choosing the excursion -->
-  <div class="field">
-    <%= simple_fields_for :itinerary_excursions do |ie| %>
-     <%= ie.collection_check_boxes :excursion_ids,
-                                   Excursion.find_each,
-                                   :id, :title,
-                                   error: false %>
-    <% end %>
-  </div>
-
-
-
-  <div class="actions">
-    <%= form.submit 'Create Itinerary' %>
-  </div>
-<% end %>
+</div>
