@@ -15,7 +15,13 @@ class ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new(itinerary_params)
     @itinerary.user = current_user
-    excursion_ids = params[:itinerary_excursions][:excursion_ids].reject(&:empty?)
+
+    if params[:itinerary_excursions].present? && params[:itinerary_excursions][:excursion_ids].present?
+      excursion_ids = params[:itinerary_excursions][:excursion_ids].reject(&:empty?)
+    else
+      excursion_ids = [] # Set a default empty array if params are nil or missing
+    end
+
     if @itinerary.save
       excursion_ids.each do |excursion|
         ItineraryExcursion.create(excursion_id: excursion, itinerary_id: @itinerary.id)
