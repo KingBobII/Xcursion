@@ -13,7 +13,11 @@
               <% itinerary.excursions.each do |excursion| %>
                 <li class="list-group-item">
                   <%= excursion.title %>
-                  <%= excursion.image %>
+                   <% if excursion.image.present? %>
+                    <%= cl_image_tag excursion.image.key,class: "image-of-excursion", alt: "Image of an Excursion", height: 200, width: 300, crop: :fill  %>
+                  <% else %>
+                    <%= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png" %>
+                  <% end %>
                 </li>
               <% end %>
             </ul>
