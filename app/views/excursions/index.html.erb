@@ -1,47 +1,22 @@
 <div class="container my-4">
-
   <h1>Suggested Things To Do:</h1>
   <p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
 
-
-  <div class="excursion-cards">
-    <ul>
+  <div class="grid-container">
     <% @excursions.each do |excursion| %>
-      <li><%= link_to excursion.title, excursion_path(excursion) %>
+      <%= link_to excursion_path(excursion), class: "excursion-link" do %>
+        <div class="excursion-card item">
+          <h3 class="excursion-title"><%= excursion.title %></h3>
           <% if excursion.image.present? %>
-            <%= cl_image_tag excursion.image.key,class: "image-of-excursion", alt: "Image of an Excursion", height: 300, width: 400, crop: :fill  %>
+            <%= cl_image_tag excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill %>
           <% else %>
-            <%= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png" %>
+            <%= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image" %>
           <% end %>
-      </li>
+          <p><strong>City:</strong> <%= excursion.city %></p>
+          <p><strong>Category:</strong> <%= excursion.category %></p>
+          <p><strong>Description:</strong> <%= excursion.description %></p>
+        </div>
       <% end %>
-    </ul>
-
-    </div>
-
-  <%= link_to "Create an excursion", new_excursion_path%>
-  <%= link_to "My itineraries", itineraries_path %>
+    <% end %>
+  </div>
 </div>
-<!--<div class="container my-4">
-  <h1>Suggested Things To Do:</h1>
-  <p>"Savor Every Moment, Forget Every Hassle: Choose Xcursion"</p>
-
-  <div class="excursion-cards">
-    <%# @excursions.each do |excursion| %>-->
-<!--      <div class="excursion-card">-->
-        <%#= link_to excursion_path(excursion) do %>
-          <%# if excursion.image.present? %>
-            <%#= cl_image_tag excursion.image.key, class: "image-of-excursion", alt: "Image of an Excursion",, height: 300, width: 400, crop: :fill %>
-          <%# else %>
-            <%#= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png" %>
-          <%# end %>
-<!--          <h3><%#= excursion.title %></h3>-->
-        <%# end %>
-<!--      </div>-->
-    <%# end %>
-<!--  </div>
-
-  <%#= link_to "Create an excursion", new_excursion_path, class: "btn btn-primary" %>-->
-  <%#= link_to "My itineraries", itineraries_path, class: "btn btn-secondary" %>
-<!--</div>
--->
