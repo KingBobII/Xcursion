@@ -11,4 +11,9 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/show";
-
+body {
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

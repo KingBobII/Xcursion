@@ -83,7 +83,6 @@ excursion2.save
 
 puts "#{Excursion.count} Excursions created"
 
-
 puts "creating itineraries"
 # Create Itineraries
 # Create Itineraries
