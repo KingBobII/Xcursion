@@ -1,4 +1,10 @@
 class Excursion < ApplicationRecord
+  include AlgoliaSearch
+  algoliasearch do
+    # attributes :title, :city, :description, :category
+    # searchableAttributes ['title', 'city', 'unordered(description)', 'category']
+  end
+
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :itinerary_excursions, dependent: :destroy

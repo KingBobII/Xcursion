@@ -1,19 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Xcursion</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
-    <%= yield %>
-    <%= render "shared/footer" %>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xcursion</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.8.6/dist/algoliasearch-lite.umd.min.js"></script>
+</head>
+<body>
+  <%= render "shared/navbar" %>
+  <%= render "shared/flashes" %>
+  <%= yield %>
+  <%= render "shared/footer" %>
+  <script>
+    // Your Algolia application ID and search-only API key
+    var algoliaAppId = 'QSMHTAERIJ';
+    var algoliaSearchKey = '2ccac80ffbc9babe7aabc61f39090373';
+    // Initialize Algolia client
+    var client = algoliasearch(algoliaAppId, algoliaSearchKey);
+    var index = client.initIndex('Excursion');
+    // Perform a search on the server-side and return results to the client
+    function performSearch() {
+      var query = document.getElementById('searchInput').value;
+      // Make an AJAX request to your server-side search endpoint
+      fetch('/excursions/search?query=' + encodeURIComponent(query))
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          // Update the UI with search results
+          var resultsContainer = document.getElementById('searchResults');
+          resultsContainer.innerHTML = ''; // Clear previous results
+          // Iterate through search results and append to the container
+          data.hits.forEach(hit => {
+            resultsContainer.innerHTML += `<div>${hit.title} - ${hit.city}</div>`;
+          });
+        })
+        .catch(error => console.error(error));
+    }
+  </script>
+</body>
 </html>
+
