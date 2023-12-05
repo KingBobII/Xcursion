@@ -6,6 +6,10 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @participant = Participant.new
+    @available_users = User.where.not(id: @itinerary.participants.pluck(:user_id))
+    # @chatroom = Chatroom.find_by(itinerary_id: @itinerary.id)
+    @itinerary_message = ItineraryMessage.new
   end
 
   def new
@@ -53,6 +57,7 @@ class ItinerariesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
 

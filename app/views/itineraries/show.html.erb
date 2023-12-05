@@ -1,9 +1,52 @@
 <div class="container my-4">
-<h1><%= @itinerary.title %></h1>
-<p><strong>From:</strong><%=  @itinerary.start_time%></p>
-<p><strong>To:</strong><%=  @itinerary.end_time%></p>
-<p><strong>Description:</strong> <%= @itinerary.description %></p>
+  <h1><%= @itinerary.title %></h1>
+  <p><strong>From:</strong><%=  @itinerary.start_time%></p>
+  <p><strong>To:</strong><%=  @itinerary.end_time%></p>
+  <p><strong>Description:</strong> <%= @itinerary.description %></p>
+  <p><strong>Participants:</strong></p>
+  <% @itinerary.participants.each do |participant| %>
+    <p><%= participant.user.username %></p>
+  <% end %>
 
-<p><%= link_to 'Back', itineraries_path,class: "btn btn-info" %>
-<%= link_to 'Edit', edit_itinerary_path, class: "btn btn-primary" %></p>
-<%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+
+
+  <p><%= link_to 'Back', itineraries_path,class: "btn btn-info" %></p>
+  <%= link_to 'Edit', edit_itinerary_path, class: "btn btn-primary" %></p>
+  <%#= link_to 'Chat', itinerary_chatroom_path(@itinerary, @chatroom), class: "btn btn-primary" %>
+  <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%#= simple_form_for @itinerary, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
+    <%#= f.button :submit, "Add Participants" %>
+  <%# end %>
+  <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
+    <% @available_users.each do |user| %>
+      <%= f.label :user_id, value: user.id %>
+      <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
+      <%= user.username %><br>
+    <% end %>
+    <%= f.button :submit, "Add Participants" %>
+  <% end %>
+
+  <div class="itinerary-chatroom-container">
+    <h2><%= @itinerary.title %> Chatroom</h2>
+    <div class="itinerary-chatroom"
+          data-controller="itinerary-chatroom-subscription"
+          data-itinerary-chatroom-subscription-chatroom-id-value="<%= @itinerary.id %>"
+          data-itinerary-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+    >
+      <div class="messages" data-itinerary-chatroom-subscription-target="messages">
+        <% @itinerary.itinerary_messages.each do |message| %>
+          <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+              <%= render "messages/message", message: message %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= simple_form_for [@itinerary, @itinerary_message], html: { data: { action: "turbo:submit-end->itinerary-chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
+        <%= f.input :content, label: false, placeholder: "Type your message...", wrapper_html: {class: "flex-grow-1"} %>
+        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
