@@ -17,6 +17,8 @@ Participant.destroy_all
 Itinerary.destroy_all
 Excursion.destroy_all
 User.destroy_all
+Chatroom.destroy_all
+Message.destroy_all
 
 puts "creating users"
 
@@ -764,35 +766,35 @@ puts "#{Itinerary.count} itineraries created"
 puts "creating reviews"
 # Create Reviews
 review_data = [
-  { content: 'A fantastic journey through the winelands. The wines were exceptional, and the scenery was breathtaking!', user_rating: 5, excursion_id: 1 },
-  { content: 'Horseback riding on Noordhoek Beach was a dream come true. The horses were well-trained, and the beach was pristine.', user_rating: 4, excursion_id: 2 },
-  { content: 'The historical tour of Robben Island left a profound impact. Its a must-visit to understand South Africas history.', user_rating: 5, excursion_id: 3 },
-  { content: 'The helicopter tour provided an unforgettable aerial perspective of Cape Town. The pilot was skilled, and the views were stunning.', user_rating: 5, excursion_id: 4 },
-  { content: 'Whale watching in Hermanus was incredible. We saw multiple whales breaching, a truly mesmerizing experience.', user_rating: 5, excursion_id: 5 },
-  { content: 'Kloofing in Jonkershoek Nature Reserve was an adrenaline rush. The guides were knowledgeable and ensured our safety.', user_rating: 4, excursion_id: 6 },
-  { content: 'The Segway tour at Spier Wine Farm was a fun and unique way to explore the vineyards. The wines were excellent too.', user_rating: 4, excursion_id: 7 },
-  { content: 'Muizenberg surfing lesson was fantastic for beginners. The instructor was patient, and the waves were ideal for learning.', user_rating: 4, excursion_id: 8 },
-  { content: 'The Tygerberg Nature Reserve trail offered a peaceful escape. The diverse flora and fauna made the hike enjoyable.', user_rating: 4, excursion_id: 9 },
-  { content: 'Sunset catamaran cruise was a romantic experience. The crew was attentive, and the sunset views were mesmerizing.', user_rating: 5, excursion_id: 10 },
-  { content: 'The Lion\'s Head Full Moon Hike was a magical experience. The moonlit views from the summit were awe-inspiring.', user_rating: 5, excursion_id: 11 },
-  { content: 'The Hot Air Balloon Ride over Cape Winelands was a dreamy adventure. The sunrise and vineyard views were breathtaking.', user_rating: 5, excursion_id: 12 },
-  { content: 'Exploring the street art in Cape Town was a vibrant and creative journey. Each mural told a unique story of the city.', user_rating: 4, excursion_id: 13 },
-  { content: 'Chapman\'s Peak Drive at sunset was a picturesque drive with mesmerizing coastal views. A must for nature lovers.', user_rating: 5, excursion_id: 14 },
-  { content: 'District Six Walking Tour provided a deep understanding of the area\'s history. The guide was knowledgeable and engaging.', user_rating: 4, excursion_id: 15 },
-  { content: 'Signal Hill Sunset was a serene experience with panoramic views of Cape Town. Perfect for a peaceful evening.', user_rating: 5, excursion_id: 16 },
-  { content: 'Cape Town Street Art Exploration was a colorful journey through the city\'s creative and expressive neighborhoods.', user_rating: 4, excursion_id: 17 },
-  { content: 'Chapman\'s Peak Drive Sunset offered breathtaking views of the coastline. An ideal spot for a romantic sunset.', user_rating: 5, excursion_id: 18 },
-  { content: 'The City Bike Tour in San Francisco was a delightful way to explore iconic landmarks. The guide was friendly and informative.', user_rating: 4, excursion_id: 19 },
-  { content: 'Boulders Beach Penguin Encounter was an adorable experience with the charming African penguins.', user_rating: 5, excursion_id: 20 },
-  { content: 'The Kirstenbosch Canopy Walkway provided a unique treetop perspective of the botanical gardens. A peaceful and scenic stroll.', user_rating: 4, excursion_id: 21 },
-  { content: 'Cape Town Comedy Club Night was a hilarious evening with top-notch comedians. Perfect for a night of laughter.', user_rating: 5, excursion_id: 22 },
-  { content: 'A scenic hike through Table Mountain National Park. The views of Cape Town were breathtaking!', user_rating: 5, excursion_id: 23 },
-  { content: 'The Cape Winelands tour was a delightful journey through picturesque vineyards. The wine tastings were exceptional.', user_rating: 4, excursion_id: 24 },
-  { content: 'Exploring the historic Bo-Kaap neighborhood was a cultural delight. The vibrant colors and rich history were captivating.', user_rating: 5, excursion_id: 25 },
-  { content: 'A thrilling paragliding experience off Signal Hill. The adrenaline rush and panoramic views made it unforgettable.', user_rating: 4, excursion_id: 26 },
-  { content: 'The Shark Cage Diving adventure was an adrenaline-pumping experience. Getting up close with sharks was exhilarating.', user_rating: 5, excursion_id: 27 },
-  { content: 'Discovering the magic of Kirstenbosch Botanical Gardens was a peaceful and scenic escape. The diverse plant life was fascinating.', user_rating: 4, excursion_id: 28 },
-  { content: 'A captivating visit to the Iziko South African Museum. The exhibits showcased the rich cultural and natural heritage of the region.', user_rating: 5, excursion_id: 29 }
+  { content: 'A fantastic journey through the winelands. The wines were exceptional, and the scenery was breathtaking!', user_rating: 5, excursion_id: excursion1.id },
+  { content: 'Horseback riding on Noordhoek Beach was a dream come true. The horses were well-trained, and the beach was pristine.', user_rating: 4, excursion_id: excursion2.id},
+  { content: 'The historical tour of Robben Island left a profound impact. Its a must-visit to understand South Africas history.', user_rating: 5, excursion_id: excursion3.id },
+  { content: 'The helicopter tour provided an unforgettable aerial perspective of Cape Town. The pilot was skilled, and the views were stunning.', user_rating: 5, excursion_id: excursion4.id },
+  { content: 'Whale watching in Hermanus was incredible. We saw multiple whales breaching, a truly mesmerizing experience.', user_rating: 5, excursion_id: excursion5.id },
+  { content: 'Kloofing in Jonkershoek Nature Reserve was an adrenaline rush. The guides were knowledgeable and ensured our safety.', user_rating: 4, excursion_id: excursion6.id },
+  { content: 'The Segway tour at Spier Wine Farm was a fun and unique way to explore the vineyards. The wines were excellent too.', user_rating: 4, excursion_id: excursion7.id },
+  { content: 'Muizenberg surfing lesson was fantastic for beginners. The instructor was patient, and the waves were ideal for learning.', user_rating: 4, excursion_id: excursion8.id },
+  { content: 'The Tygerberg Nature Reserve trail offered a peaceful escape. The diverse flora and fauna made the hike enjoyable.', user_rating: 4, excursion_id: excursion9.id },
+  { content: 'Sunset catamaran cruise was a romantic experience. The crew was attentive, and the sunset views were mesmerizing.', user_rating: 5, excursion_id: excursion10.id },
+  { content: 'The Lion\'s Head Full Moon Hike was a magical experience. The moonlit views from the summit were awe-inspiring.', user_rating: 5, excursion_id: excursion11.id},
+  { content: 'The Hot Air Balloon Ride over Cape Winelands was a dreamy adventure. The sunrise and vineyard views were breathtaking.', user_rating: 5, excursion_id: excursion12.id },
+  { content: 'Exploring the street art in Cape Town was a vibrant and creative journey. Each mural told a unique story of the city.', user_rating: 4, excursion_id: excursion13.id },
+  { content: 'Chapman\'s Peak Drive at sunset was a picturesque drive with mesmerizing coastal views. A must for nature lovers.', user_rating: 5, excursion_id: excursion14.id},
+  { content: 'District Six Walking Tour provided a deep understanding of the area\'s history. The guide was knowledgeable and engaging.', user_rating: 4, excursion_id: excursion15.id },
+  { content: 'Signal Hill Sunset was a serene experience with panoramic views of Cape Town. Perfect for a peaceful evening.', user_rating: 5, excursion_id: excursion16.id },
+  { content: 'Cape Town Street Art Exploration was a colorful journey through the city\'s creative and expressive neighborhoods.', user_rating: 4, excursion_id: excursion17.id },
+  { content: 'Chapman\'s Peak Drive Sunset offered breathtaking views of the coastline. An ideal spot for a romantic sunset.', user_rating: 5, excursion_id: excursion18.id},
+  { content: 'The City Bike Tour in San Francisco was a delightful way to explore iconic landmarks. The guide was friendly and informative.', user_rating: 4, excursion_id: excursion19.id },
+  { content: 'Boulders Beach Penguin Encounter was an adorable experience with the charming African penguins.', user_rating: 5, excursion_id: excursion20.id },
+  { content: 'The Kirstenbosch Canopy Walkway provided a unique treetop perspective of the botanical gardens. A peaceful and scenic stroll.', user_rating: 4, excursion_id: excursion21.id },
+  { content: 'Cape Town Comedy Club Night was a hilarious evening with top-notch comedians. Perfect for a night of laughter.', user_rating: 5, excursion_id: excursion22.id },
+  { content: 'A scenic hike through Table Mountain National Park. The views of Cape Town were breathtaking!', user_rating: 5, excursion_id: excursion23.id },
+  { content: 'The Cape Winelands tour was a delightful journey through picturesque vineyards. The wine tastings were exceptional.', user_rating: 4, excursion_id: excursion24.id },
+  { content: 'Exploring the historic Bo-Kaap neighborhood was a cultural delight. The vibrant colors and rich history were captivating.', user_rating: 5, excursion_id: excursion25.id },
+  { content: 'A thrilling paragliding experience off Signal Hill. The adrenaline rush and panoramic views made it unforgettable.', user_rating: 4, excursion_id: excursion26.id },
+  { content: 'The Shark Cage Diving adventure was an adrenaline-pumping experience. Getting up close with sharks was exhilarating.', user_rating: 5, excursion_id: excursion27.id },
+  { content: 'Discovering the magic of Kirstenbosch Botanical Gardens was a peaceful and scenic escape. The diverse plant life was fascinating.', user_rating: 4, excursion_id: excursion28.id },
+  { content: 'A captivating visit to the Iziko South African Museum. The exhibits showcased the rich cultural and natural heritage of the region.', user_rating: 5, excursion_id: excursion29.id }
 ]
 
 review_data.each do |review_attrs|
@@ -814,3 +816,35 @@ participant_data = [
 Participant.create!(participant_data)
 
 puts "#{Participant.count} Participants created"
+
+# puts "Creating chat rooms"
+
+# Chatroom.create!(itinerary: itinerary1)
+# Chatroom.create!(itinerary: itinerary2)
+# # ... create more chat rooms as needed
+
+# puts "#{Chatroom.count} Chat rooms created"
+
+# puts "Creating messages"
+
+# # Sample users and chat rooms
+# users = User.all
+# chatrooms = Chatroom.all
+
+# # Set static created_at and updated_at values
+# created_at = Time.now - (30 * 24 * 60 * 60) # 30 days ago
+# updated_at = Time.now - (15 * 24 * 60 * 60) # 15 days ago
+
+# users.each do |user|
+#   chatrooms.each do |chatroom|
+#     Message.create!(
+#       user: user,
+#       content: "Message from #{user.username}, How's it?",
+#       chatroom: chatroom,
+#       created_at: created_at,
+#       updated_at: updated_at
+#     )
+#   end
+# end
+
+# puts "#{Message.count} Messages created"

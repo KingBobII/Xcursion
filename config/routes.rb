@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :itineraries do
     resources :participants, only: [:new, :create, :update ,:delete]
+    # resources :chatrooms, only: :show do
+    resources :itinerary_messages, only: :create
+    # end
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

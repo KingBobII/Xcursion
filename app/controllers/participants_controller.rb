@@ -4,22 +4,26 @@ class ParticipantsController < ApplicationController
   end
 
   def create
-    @participant = Participant.new(participant_params)
-    @itinerary = Itinerary.find(params(:id))
-    @participant.itinerary = @itinerary
-    @user = current_user
-    @participant.user = @user
-    if @participant.save
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    user_ids = params[:participant][:user_id].reject(&:blank?)
+    # raise
+
+    user_ids.each do |user_id|
+      @participant = @itinerary.participants.create(user_id: user_id)
       @participant.rsvp = 0
-      redirect_to excursion_itinerary_path, notice: 'Participant successfully added to your itinerary'
+    end
+
+    if @itinerary.save
+      redirect_to itinerary_path(@itinerary), notice: 'Participants successfully added to your itinerary'
     else
-      render :new, status: :unprocessable_entity
+      # render :new, status: :unprocessable_entity
+      redirect_to itinerary_path(@itinerary), alert: 'There was an error adding your participants'
     end
   end
 
   private
 
   def participant_params
-    params(:participant).permit(:user_id, :itinerary_id, :name)
+    params.require(:participant).permit(:user_id, :itinerary_id, :name)
   end
 end
