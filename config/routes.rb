@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "excursions#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :excursions do
+    collection do
+       get 'search_excursions', to: 'search_excursions#search', as: :search_excursions
+    end
     resources :reviews
   end
 

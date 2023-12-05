@@ -3,7 +3,47 @@ class ExcursionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @excursions = Excursion.all
+    # @excursions = Excursion.all
+
+    client = Algolia::Search::Client.create('QSMHTAERIJ', '0f04d30b0769ccd0ad152b7d7dbea633')
+    index = client.init_index('Excursion')
+
+    # Perform the search based on user input
+    query = params[:query]
+
+    if query.present?
+      # @excursions = index.search(query)['hits']
+      @excursions = index.search(query)[:hits]
+      @formatted_excursions = @excursions.map do |hit|
+        excursion = Excursion.find(hit[:id])
+        {
+          id: excursion.id,
+          title: excursion.title,
+          image_key: excursion.image.key,
+          city: excursion.city,
+          description: excursion.description,
+          capacity: excursion.capacity,
+          category: excursion.category,
+          review: excursion.review,
+          length: excursion.length,
+          average_rating: excursion.average_rating
+        }
+      end
+
+      render json: @formatted_excursions
+    else
+      @excursions = Excursion.all # Fetch all excursions when there's no search query
+    end
+
+    # raise
+    # Debugging statements
+    # puts "Query: #{query}"
+    # puts "Excursions: #{@excursions.inspect}"
+
+    # respond_to do |format|
+    #   format.html { render 'index' }
+    #   format.json { render json: @formatted_excursions }
+    # end
   end
 
   def show
@@ -40,6 +80,79 @@ class ExcursionsController < ApplicationController
       render :edit
       # If the update fails, it renders the 'edit' view again to show errors or allow further editing.
     end
+  end
+
+  # def search
+  #   client = Algolia::Search::Client.create('QSMHTAERIJ', '0f04d30b0769ccd0ad152b7d7dbea633')
+  #   index = client.init_index('Excursion')
+
+  #   # Perform the search based on user input
+  #   query = params[:query]
+  #   # search_result = index.search(query)
+  #   @searched_excursions = index.search(query)['hits']
+  #   # raise
+
+  #   # Check if search_result is not nil and has hits
+  #   # if search_result && search_result['hits']
+  #   #   # Assuming your data structure includes '_source' and '_highlightResult'
+  #   #   @excursions = search_result['hits'].map do |hit|
+  #   #     # source = hit['_source'] || {}
+  #   #     # highlight_result = hit['_highlightResult'] || {}
+  #   #     # excursion = source.merge(highlight_result)
+  #   #     # excursion.transform_keys(&:to_sym) # Convert keys to symbols
+  #   #     hit.transform_keys(&:to_sym)
+  #   #   end
+  #   # else
+  #   #   @excursions = []  # or handle the nil case as per your requirements
+  #   # end
+
+  #   # @excursions = search_result['hits'] #if search_result && search_result['hits']
+  #   raise
+  #   respond_to do |format|
+  #     format.html { render 'index' }
+  #     format.json { render json: @excursions }
+  #   end
+  # end
+  # def search
+  #   client = Algolia::Search::Client.create('QSMHTAERIJ', '0f04d30b0769ccd0ad152b7d7dbea633')
+  #   index = client.init_index('Excursion')
+
+  #   # Perform the search based on user input
+  #   query = params[:query]
+  #   @excursions = if query.present?
+  #                   index.search(query)['hits']
+  #                 else
+  #                   Excursion.all # Fetch all excursions when there's no search query
+  #                 end
+  #   raise
+  #   respond_to do |format|
+  #     format.html { render 'index' }
+  #     format.json { render json: @excursions }
+  #   end
+  # end
+  def search
+    # client = Algolia::Search::Client.create('QSMHTAERIJ', '0f04d30b0769ccd0ad152b7d7dbea633')
+    # index = client.init_index('Excursion')
+
+    # # Perform the search based on user input
+    # query = params[:query]
+
+    # @excursions = if query.present?
+    #                 index.search(query)['hits']
+    #               else
+    #                 Excursion.all # Fetch all excursions when there's no search query
+    #               end
+
+    # raise
+
+    # # Debugging statements
+    # puts "Query: #{query}"
+    # puts "Excursions: #{@excursions.inspect}"
+
+    # respond_to do |format|
+    #   format.html { render 'index' }
+    #   format.json { render json: @excursions }
+    # end
   end
 
   def destroy

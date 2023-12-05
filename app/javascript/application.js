@@ -4,3 +4,6 @@ import "controllers"
 import "@popperjs/core"
 import "bootstrap"
 import "@rails/actioncable"
+import SearchExcursionsController from "./controllers/search_excursions_controller.js"
+Stimulus.register("search-excursions", SearchExcursionsController)
+
