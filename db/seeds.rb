@@ -28,13 +28,15 @@ user1 = User.create!(
   username: 'john_doe',
   password: 'password',
   email: 'john@example.com',
-  bio: 'Adventure seeker and nature lover.'
+  image: 'https://cdn-icons-png.flaticon.com/128/4333/4333609.png',
+  bio: 'Adventure seeker and nature lover.',
 )
 
 user2 = User.create!(
   username: 'jane_smith',
   password: 'password',
   email: 'jane@example.com',
+  image: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_avatar_child_kid-128.png',
   bio: 'Travel enthusiast and foodie.'
 )
 
@@ -42,6 +44,7 @@ user3 = User.create!(
   username: 'alex_adventures',
   password: 'password',
   email: 'alex@example.com',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png',
   bio: 'Passionate about exploring the world and creating unforgettable memories.'
 )
 
