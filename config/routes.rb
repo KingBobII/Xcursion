@@ -4,9 +4,17 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :excursions do
     collection do
-       get 'search_excursions', to: 'search_excursions#search', as: :search_excursions
+      get 'search_excursions', to: 'search_excursions#search', as: :search_excursions
     end
     resources :reviews
+  end
+
+  #Upvote and Downvote on Excursion
+  resources :excursions do
+    member do
+      put "like", to: "excursions#upvote"
+      put "dislike", to: "excursions#downvote"
+    end
   end
 
   resources :itineraries do
@@ -21,4 +29,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+
+
+
 end

@@ -14,6 +14,32 @@
 }
 
 .btn {
+  padding: 10px;
   margin-right: 10px;
+  align-items: left;
+}
+
+.vote-button-container {
+  padding: 10px;
+  justify-content: left;
+  align-items: left;
+  height: 100vh; /* Optional: Set the height of the container */
+}
+
+.vote-button {
+  background-color: #ccc; /* Grey background color */
+  color: #333; /* Dark text color */
+  padding: 8px 16px; /* Padding around the text */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline from the text */
+  display: inline-block; /* Display the button as an inline element */
+  font-size: 14px; /* Font size */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  border: 1px solid #aaa; /* Add a border */
+}
+
+.links {
+padding: 10px;
+justify-content: left;
 }
 
