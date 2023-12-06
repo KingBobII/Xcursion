@@ -49,26 +49,34 @@
 <%= javascript_include_tag 'controllers/search_excursions_controller' %>
 
   <div class="grid-container" data-search-excursions-target="list">
-    <% if @excursions.present? %>
-      <% @excursions.each do |excursion| %>
-        <%= link_to excursion_path(excursion), class: "excursion-link" do %>
-          <div class="excursion-card item">
-            <h3 class="excursion-title"><%= excursion[:title] %></h3>
+  <% if @excursions.present? %>
+    <% @excursions.each do |excursion| %>
+      <%= link_to excursion_path(excursion), class: "excursion-link" do %>
+        <div class="excursion-card item">
+          <h3 class="excursion-title card-title" style="height: 2.5rem; overflow: hidden;"><%= excursion[:title] %></h3>
+          <div class="excursion-image">
             <% if excursion.image.present? %>
               <%= cl_image_tag excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill %>
             <% else %>
               <%= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image" %>
             <% end %>
+          </div>
+          <div class="excursion-info">
             <p><strong>City:</strong> <%= excursion[:city] %></p>
             <p><strong>Category:</strong> <%= excursion[:category] %></p>
             <p><strong>Description:</strong> <%= excursion[:description] %></p>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    <% else %>
-      <p>No excursions found.</p>
     <% end %>
-  </div>
+  <% else %>
+    <p>No excursions found.</p>
+  <% end %>
+</div>
+
+
+
+
 
   <!--<template id=>
     <div class="grid-container" data-search-excursions-target="list">

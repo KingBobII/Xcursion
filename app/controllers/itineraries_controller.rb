@@ -1,7 +1,15 @@
 class ItinerariesController < ApplicationController
 
   def index
-    @itineraries = current_user.itineraries
+    @itineraries = []
+    my_participations = Itinerary.joins(:participants).where(participants: { user_id: current_user.id })
+    my_itineraries = current_user.itineraries
+    my_participations.each do |participation|
+      @itineraries << participation
+    end
+    my_itineraries.each do |my_itinerary|
+      @itineraries << my_itinerary
+    end
   end
 
   def show
