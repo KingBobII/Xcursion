@@ -23,11 +23,19 @@
       </div>
       <%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "btn btn-secondary" %>
     </div>
-  </div>
 
   <div class="links">
     <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
     <%= link_to 'Edit', edit_excursion_path(@excursion), class: "btn btn-primary" %>
     <%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
   </div>
+
+    <div class="vote-button-container">
+      <div class="vote-button">
+      <%# #.....For Upvotes and Downvotes do this..... %>
+      <p>Upvotes <%= pluralize(number_to_human(@excursion.get_upvotes.size), 'Upvote') %></p>
+      <%= button_to "Upvote", like_excursion_path(@excursion), method: :put %>
+      <p>Downvotes <%= pluralize(number_to_human(@excursion.get_downvotes.size), 'Downvote') %></p>
+      <%= button_to "Downvote", dislike_excursion_path(@excursion), method: :put %>
 </div>
+
