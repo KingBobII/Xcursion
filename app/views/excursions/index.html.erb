@@ -1,5 +1,4 @@
 <div class="container my-4" data-controller="search-excursions">
-  <h1>Suggested Things To Do:</h1>
   <%= form_with url: excursions_path, method: :get, html: {class: "mb-4", data: {search_excursions_target: "form"}} do |f|%>
     <%= f.text_field :query,
                       placeholder: 'Search for excursions...',
@@ -11,11 +10,14 @@
     <%= f.submit 'Search', class: "btn btn-primary mt-2", data: { action: "submit->search-excursions#search" } %>
   <% end %>
 
+
   <script>
     const cloudinaryImageUrl = "<%= cl_image_path('your_image_key', { class: 'excursion-image', alt: 'Image of an Excursion', crop: :fill }) %>";
   </script>
 
-  <%= javascript_include_tag 'controllers/search_excursions_controller' %>
+ <%= javascript_include_tag 'controllers/search_excursions_controller' %>
+ <h1>Excursions</h1>
+
 
   <div class="grid-container" data-search-excursions-target="list">
 
