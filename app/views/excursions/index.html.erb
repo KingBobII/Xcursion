@@ -30,7 +30,7 @@
 -->
 <%#= raise %>
 <div class="container my-4 pretty-searchbar" data-controller="search-excursions">
-  <h1>Suggested Things To Do:</h1>
+
   <%= form_with url: excursions_path, method: :get, html: {class: "mb-4", data: {search_excursions_target: "form"}} do |f|%>
   <div class="pretty-searchbar">
     <%= f.text_field :query,
@@ -47,11 +47,13 @@
 <% end %>
 
 
+
   <script>
     const cloudinaryImageUrl = "<%= cl_image_path('your_image_key', { class: 'excursion-image', alt: 'Image of an Excursion', crop: :fill }) %>";
   </script>
 
 <%= javascript_include_tag 'controllers/search_excursions_controller' %>
+<h1>Excursions</h1>
 
   <div class="grid-container" data-search-excursions-target="list">
   <% if @excursions.present? %>
