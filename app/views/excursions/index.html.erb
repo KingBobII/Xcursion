@@ -29,18 +29,23 @@
 </div>
 -->
 <%#= raise %>
-<div class="container my-4" data-controller="search-excursions">
+<div class="container my-4 pretty-searchbar" data-controller="search-excursions">
   <h1>Suggested Things To Do:</h1>
   <%= form_with url: excursions_path, method: :get, html: {class: "mb-4", data: {search_excursions_target: "form"}} do |f|%>
+  <div class="pretty-searchbar">
     <%= f.text_field :query,
-                      placeholder: 'Search for excursions...',
-                      class: "form-control",
-                      value: params[:query],
-                      data: {search_excursions_target: "input",
-                            action: "keyup->search-excursions#update"}
-                      %>
-    <%= f.submit 'Search', class: "btn btn-primary mt-2", data: { action: "submit->search-excursions#search" } %>
-  <% end %>
+                    placeholder: 'Search for excursions...',
+                    class: "form-control search-input",
+                    value: params[:query],
+                    data: {search_excursions_target: "input",
+                          action: "keyup->search-excursions#update"}
+                    %>
+    <button type="submit" class="btn btn-primary pretty-search-btn" data-action="submit->search-excursions#search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+<% end %>
+
 
   <script>
     const cloudinaryImageUrl = "<%= cl_image_path('your_image_key', { class: 'excursion-image', alt: 'Image of an Excursion', crop: :fill }) %>";
@@ -62,9 +67,8 @@
             <% end %>
           </div>
           <div class="excursion-info">
-            <p><strong>City:</strong> <%= excursion[:city] %></p>
-            <p><strong>Category:</strong> <%= excursion[:category] %></p>
-            <p><strong>Description:</strong> <%= excursion[:description] %></p>
+            <p><strong><%= excursion[:category] %></strong>,</p><p><%= excursion[:description] %></p>
+             <p> <i><%= excursion[:city] %></i> </p>
           </div>
         </div>
       <% end %>

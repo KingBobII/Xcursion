@@ -55,7 +55,7 @@ puts "creating excursions"
 # Excursion 1
 excursion1 = Excursion.new(
   title: 'Table Mountain Hike',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 20,
   category: 'Hiking',
   length: 4,
@@ -70,7 +70,7 @@ excursion1.save
 # Excursion 2
 excursion2 = Excursion.new(
   title: 'Cape Peninsula Coastal Drive',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Scenic Drive',
   length: 5,
@@ -87,7 +87,7 @@ excursion2.save
 # Excursion 3
 excursion3 = Excursion.new(
   title: 'Winelands Vineyard Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Wine Tasting',
   length: 3,
@@ -102,7 +102,7 @@ excursion3.save
 # Excursion 3
 excursion3 = Excursion.new(
   title: 'Winelands Vineyard Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Wine Tasting',
   length: 3,
@@ -117,7 +117,7 @@ excursion3.save
 # Excursion 4
 excursion4 = Excursion.new(
   title: 'Cape Point Day Trip',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 18,
   category: 'Sightseeing',
   length: 6,
@@ -132,7 +132,7 @@ excursion4.save
 # Excursion 5
 excursion5 = Excursion.new(
   title: 'Boulders Beach Penguin Encounter',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Wildlife',
   length: 2,
@@ -149,7 +149,7 @@ excursion5.save
 # Excursion 6
 excursion6 = Excursion.new(
   title: 'Chapman\'s Peak Drive Sunset',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Scenic Drive',
   length: 3,
@@ -164,7 +164,7 @@ excursion6.save
 # Excursion 7
 excursion7 = Excursion.new(
   title: 'District Six Walking Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Historical',
   length: 2,
@@ -179,7 +179,7 @@ excursion7.save
 # Excursion 7
 excursion7 = Excursion.new(
   title: 'District Six Walking Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Historical',
   length: 2,
@@ -196,7 +196,7 @@ excursion7.save
 # Excursion 8
 excursion8 = Excursion.new(
   title: 'Signal Hill Sunset',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Scenic View',
   length: 1,
@@ -211,7 +211,7 @@ excursion8.save
 # Excursion 9
 excursion9 = Excursion.new(
   title: 'Cape Town Street Art Exploration',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Art',
   length: 2,
@@ -226,7 +226,7 @@ excursion9.save
 # Excursion 10
 excursion10 = Excursion.new(
   title: 'Bo-Kaap Culinary Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Culinary',
   length: 3,
@@ -243,7 +243,7 @@ excursion10.save
 # Excursion 11
 excursion11 = Excursion.new(
   title: 'Lion\'s Head Full Moon Hike',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Hiking',
   length: 2,
@@ -258,7 +258,7 @@ excursion11.save
 # Excursion 12
 excursion12 = Excursion.new(
   title: 'Cape Winelands Hot Air Balloon Ride',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 8,
   category: 'Adventure',
   length: 4,
@@ -273,7 +273,7 @@ excursion12.save
 # Excursion 13
 excursion13 = Excursion.new(
   title: 'Groot Constantia Wine Tasting',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Wine Tasting',
   length: 2,
@@ -288,7 +288,7 @@ excursion13.save
 # Excursion 14
 excursion14 = Excursion.new(
   title: 'Noordhoek Beach Horseback Riding',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 8,
   category: 'Adventure',
   length: 3,
@@ -303,7 +303,7 @@ excursion14.save
 # Excursion 15
 excursion15 = Excursion.new(
   title: 'Robben Island Historical Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 20,
   category: 'Historical',
   length: 4,
@@ -318,7 +318,7 @@ excursion15.save
 # Excursion 16
 excursion16 = Excursion.new(
   title: 'Cape Town Helicopter Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 4,
   category: 'Aerial Tour',
   length: 1,
@@ -333,7 +333,7 @@ excursion16.save
 # Excursion 17
 excursion17 = Excursion.new(
   title: 'Hermanus Whale Watching Cruise',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Wildlife',
   length: 5,
@@ -348,7 +348,7 @@ excursion17.save
 # Excursion 18
 excursion18 = Excursion.new(
   title: 'Kloofing Adventure in Jonkershoek Nature Reserve',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 6,
   category: 'Adventure',
   length: 6,
@@ -363,7 +363,7 @@ excursion18.save
 # Excursion 19
 excursion19 = Excursion.new(
   title: 'Spier Wine Farm Segway Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Wine Tasting',
   length: 2,
@@ -378,7 +378,7 @@ excursion19.save
 # Excursion 20
 excursion20 = Excursion.new(
   title: 'Muizenberg Surfing Lesson',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 8,
   category: 'Water Sports',
   length: 3,
@@ -393,7 +393,7 @@ excursion20.save
 # Excursion 21
 excursion21 = Excursion.new(
   title: 'Tygerberg Nature Reserve Trail',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Nature Walk',
   length: 4,
@@ -408,7 +408,7 @@ excursion21.save
 # Excursion 22
 excursion22 = Excursion.new(
   title: 'Cape Town Sunset Catamaran Cruise',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 18,
   category: 'Boat Tour',
   length: 2,
@@ -422,7 +422,7 @@ excursion22.save
 
 excursion23 = Excursion.new(
   title: 'Kalk Bay Coastal Walk',
-  city: 'Cape Town',
+  city:'Cape Town, Western Cape, South Africa',
   capacity: 12,
   category: 'Nature Walk',
   length: 3,
@@ -437,7 +437,7 @@ excursion23.save
 # Excursion 24
 excursion24 = Excursion.new(
   title: 'Two Oceans Aquarium Exploration',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Aquarium',
   length: 2,
@@ -452,7 +452,7 @@ excursion24.save
 # Excursion 25
 excursion25 = Excursion.new(
   title: 'Sunset Cruise in Table Bay',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 20,
   category: 'Boat Tour',
   length: 2,
@@ -467,7 +467,7 @@ excursion25.save
 # Excursion 26
 excursion26 = Excursion.new(
   title: 'Rhodes Memorial Photography Tour',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 10,
   category: 'Photography',
   length: 3,
@@ -482,7 +482,7 @@ excursion26.save
 # Excursion 27
 excursion27 = Excursion.new(
   title: 'Cape Town Comedy Club Night',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Entertainment',
   length: 4,
@@ -497,7 +497,7 @@ excursion27.save
 # Excursion 28
 excursion28 = Excursion.new(
   title: 'Kalk Bay Harbour Exploration',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 15,
   category: 'Harbour Visit',
   length: 3,
@@ -511,7 +511,7 @@ excursion28.save
 
 excursion29 = Excursion.new(
   title: 'Kirstenbosch Botanical Gardens',
-  city: 'Cape Town',
+  city: 'Cape Town, Western Cape, South Africa',
   capacity: 18,
   category: 'Botanical Gardens',
   length: 2,

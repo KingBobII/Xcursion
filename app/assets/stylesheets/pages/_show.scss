@@ -3,7 +3,17 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 700px;
 }
+
+.excursion-container:hover{
+  box-shadow: 1px 1px 10px rgb(85, 105, 118);
+}
+
+.excursion-container h1 {
+  text-align: center;
+}
+
 
 .excursion-infos {
   margin-bottom: 20px;
@@ -42,4 +52,7 @@
 padding: 10px;
 justify-content: left;
 }
-
+.container-rating {
+  display: flex; /* This sets the container as a flex container */
+  justify-content: left; /* Distributes items evenly */
+}

@@ -1,41 +1,50 @@
 <div class="container my-4 excursion-container">
-  <div class="excursion-infos">
-    <h1><%= @excursion.title %></h1>
-    <p><strong>Description:</strong> <%= @excursion.description %></p>
-    <p><strong>City:</strong> <%= @excursion.city %></p>
-
-    <div class="reviews">
-      <% if @excursion.reviews.present? %>
-        <h2>Latest Reviews</h2>
-        <% @excursion.reviews.each do |review| %>
-          <p><strong>User:</strong> <%= review.user.username %></p>
-          <p><strong>Content:</strong> <%= review.content %></p>
-          <p><strong>Rating:</strong> <%= star_rating(review.user_rating) %><%= link_to 'Edit this review', edit_excursion_review_path(@excursion), class: "btn btn-secondary" %></p>
-          <hr>
-        <% end %>
-      <% else %>
-        <p>No reviews yet. Be the first to add one!</p>
-      <% end %>
-      <div id="reviews" class="reviews">
-        <% @excursion.reviews.order(created_at: :desc).each do |review| %>
-          <!-- Display each review -->
-        <% end %>
-      </div>
-      <%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "btn btn-secondary" %>
+    <div class="excursion-infos">
+        <h1><%= @excursion.title %></h1>
+        <div class="excursion-image">
+            <%= @excursion.image.present? ? cl_image_tag(@excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill) : image_tag("https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image") %>
+        </div>
+        <p><strong><i class="fa-solid fa-hashtag"></i></strong> <%= @excursion.description %></p>
+        <p><strong><i class="fa-solid fa-location-dot"></i></strong> <%= @excursion.city %></p>
+        <div class="btn-group" role="group" aria-label="Upvote and Downvote buttons">
+            <%= button_to like_excursion_path(@excursion), method: :put, class: "btn btn-success text-white", remote: true do %>
+                <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-up") %> <%= number_to_human(@excursion.get_upvotes.size) %>
+            <% end %>
+            <%= button_to dislike_excursion_path(@excursion), method: :put, class: "btn btn-danger text-white", remote: true do %>
+                <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-down") %> <%= number_to_human(@excursion.get_downvotes.size) %>
+            <% end %>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <% if current_user == @excursion.user %>
+                        <li><%= link_to 'Edit', edit_excursion_path(@excursion), class: "dropdown-item" %></li>
+                        <li><%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "dropdown-item text-danger" %></li>
+                    <% end %>
+                    <li><%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "dropdown-item" %></li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-  <div class="links">
-    <%= link_to 'Back', root_path, class: "btn btn-secondary" %>
-    <%= link_to 'Edit', edit_excursion_path(@excursion), class: "btn btn-primary" %>
-    <%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-  </div>
-
-    <div class="vote-button-container">
-      <div class="vote-button">
-      <%# #.....For Upvotes and Downvotes do this..... %>
-      <p>Upvotes <%= pluralize(number_to_human(@excursion.get_upvotes.size), 'Upvote') %></p>
-      <%= button_to "Upvote", like_excursion_path(@excursion), method: :put %>
-      <p>Downvotes <%= pluralize(number_to_human(@excursion.get_downvotes.size), 'Downvote') %></p>
-      <%= button_to "Downvote", dislike_excursion_path(@excursion), method: :put %>
+    <hr>
+    <div class="reviews">
+        <% if @excursion.reviews.present? %>
+            <h2>Latest Reviews</h2>
+            <% @excursion.reviews.each do |review| %>
+                <p><strong><i class="fa-solid fa-user"></i></strong> <%= review.user.username %></p>
+                <p><strong><i class="fa-solid fa-comment"></i></strong> <%= review.content %></p>
+                <div class="container-rating">
+                <p><strong>Rating:</strong></p><p><%= star_rating(review.user_rating) %></p>
+                </div>
+                <% if current_user == review.user %>
+                    <%= link_to(edit_excursion_review_path(@excursion), class: "btn btn-secondary") do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <p>No reviews yet. Be the first to add one!</p>
+        <% end %>
+    </div>
 </div>
-
