@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'inspirations/new'
-  get 'inspirations/create'
   devise_for :users
   root to: "excursions#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,7 +9,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  #Upvote and Downvote on Excursion
+  # Upvote and Downvote on Excursion
   resources :excursions do
     member do
       put "like", to: "excursions#upvote"
