@@ -17,7 +17,8 @@
 
 <%= javascript_include_tag 'controllers/search_excursions_controller' %>
 
-<div class="grid-container" data-search-excursions-target="list">
+  <div class="grid-container" data-search-excursions-target="list">
+
   <% if @excursions.present? %>
     <% @excursions.each do |excursion| %>
       <%= link_to excursion_path(excursion), class: "excursion-link" do %>

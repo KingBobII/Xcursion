@@ -11,6 +11,14 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  #Upvote and Downvote on Excursion
+  resources :excursions do
+    member do
+      put "like", to: "excursions#upvote"
+      put "dislike", to: "excursions#downvote"
+    end
+  end
+
   resources :itineraries do
     resources :participants, only: [:new, :create, :update ,:delete]
     # resources :chatrooms, only: :show do
@@ -25,4 +33,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+
+
+
 end

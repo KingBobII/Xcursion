@@ -1,5 +1,5 @@
 .footer {
-  background: #F4F4F4;
+  background: rgb(85, 105, 118);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,12 +15,25 @@
   color: black;
   opacity: 0.15;
   text-decoration: none;
-  font-size: 24px;
-  padding: 0px 10px;
+  font-size: 16px;
+  padding: 0px 5px;
 }
 .footer-links a:hover {
   opacity: 1;
 }
 .footer .fa-heart {
   color: #D23333;
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 30px; /* Adjust the size of the logos as needed */
+  height: 30px; /* Adjust the size of the logos as needed */
 }

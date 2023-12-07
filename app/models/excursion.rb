@@ -5,12 +5,12 @@ class Excursion < ApplicationRecord
     # searchableAttributes ['title', 'city', 'unordered(description)', 'category']
   end
 
+  acts_as_votable
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :itinerary_excursions, dependent: :destroy
   has_many :itineraries, through: :itinerary_excursions
   has_one_attached :image
-  has_many :votes, dependent: :destroy
 
   validates :title, :city, :capacity, :duration, :description, :setting, :category, presence: true
 end

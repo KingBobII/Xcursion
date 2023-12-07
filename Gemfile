@@ -55,6 +55,7 @@ gem "cloudinary"
 gem "algoliasearch-rails"
 gem "mustache", "~> 1.0"
 gem "ruby-openai"
+gem "acts_as_votable"
 
 group :development, :test do
   gem "dotenv-rails"

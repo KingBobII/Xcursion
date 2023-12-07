@@ -12,17 +12,17 @@
 
 
   <p><%= link_to 'Back', itineraries_path,class: "btn btn-info" %></p>
-  <%= link_to 'Edit', edit_itinerary_path, class: "btn btn-primary" %></p>
-
-  <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-
-  <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
-    <% @available_users.each do |user| %>
-      <%= f.label :user_id, value: user.id %>
-      <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
-      <%= user.username %><br>
+  <% if current_user == @itinerary.user %>
+    <%= link_to 'Edit', edit_itinerary_path(@itinerary), class: "btn btn-primary" %>
+    <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
+      <% @available_users.each do |user| %>
+        <%= f.label :user_id, value: user.id %>
+        <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
+        <%= user.username %><br>
+      <% end %>
+      <%= f.button :submit, "Add Participants", class: "btn btn-primary" %>
     <% end %>
-    <%= f.button :submit, "Add Participants" %>
   <% end %>
 
   <div class="itinerary-chatroom-container">
@@ -32,7 +32,7 @@
           data-itinerary-chatroom-subscription-chatroom-id-value="<%= @itinerary.id %>"
           data-itinerary-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
     >
-      <div class="messages" data-itinerary-chatroom-subscription-target="messages">
+      <div class="messages" data-itinerary-chatroom-subscription-target="messages" style="height: 170px; overflow: auto; background-color:rgb(56, 56, 56); border-radius:10px; padding:10px;">
         <% @itinerary.itinerary_messages.each do |message| %>
           <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
             <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">

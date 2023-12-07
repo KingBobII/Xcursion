@@ -69,11 +69,25 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def like
-  end
+  def upvote
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @excursion = Excursion.find(params[:id])
+      @excursion.liked_by current_user
+      redirect_to @excursion
+    end
+end
 
-  def dislike
-  end
+def downvote
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @excursion = Excursion.find(params[:id])
+      @excursion.downvote_from current_user
+      redirect_to @excursion
+    end
+end
 
   private
 

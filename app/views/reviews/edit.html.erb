@@ -2,6 +2,5 @@
   <%= form.input :content, label: 'Review Content' %>
   <%= form.input :user_rating, label: 'Rating', as: :select, collection: 1..5 %>
   <%= form.association :excursion, label: 'Excursion' %>
-
   <%= form.button :submit, class: 'btn btn-primary' %>
 <% end %>

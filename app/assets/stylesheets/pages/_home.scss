@@ -1,135 +1,3 @@
-// // Specific CSS for your home-page
-// .excursion-cards {
-//   // display: grid; /* or inline-flex */
-//   display: inline-flex; /* or inline-flex */
-//   grid-template-columns: 1fr 1fr;
-//   grid-gap: 1rem;
-// }
-
-// .excursion-card {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   grid-gap: 1rem;
-//   border: 1px solid #ccc;
-//   border-radius: 10px;
-//   overflow: hidden;
-//   transition: transform 0.3s ease-in-out;
-// }
-
-// .excursion-card:hover {
-//   transform: scale(1.05);
-// }
-
-// .image-of-excursion {
-//   // width: 100%;
-//   // height: 200px;
-//   // object-fit: cover;
-//   // border-top-left-radius: 10px;
-//   // border-top-right-radius: 10px;
-//    width: 100%;
-//   height: 500px;
-//   object-fit: cover;
-//   border-radius: 10px;
-// }
-
-// .btn {
-//   margin-top: 1rem;
-// }
-
-// .excursion-image {
-//   // width: 100%;
-//   // height: 500px;
-//   object-fit: cover;
-//   border-radius: 10px;
-// }
-// .grid-container {
-//   display: grid; /* or inline-flex */
-//   flex-direction: row;
-//   // justify-content: center;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   grid-gap: 1rem;
-//   border-radius: 10px;
-// }
-
-// .item {
-//   order: 3; /* default is 0 */
-// }
-// // .footer{
-// //   background-color: #374A7D;
-// //   color: white;
-// // }
-
-// .cars-list{
-//   list-style-type: none;
-// }
-// .excursion-image {
-//   object-fit: cover;
-//   border-radius: 10px;
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .grid-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   grid-gap: 1rem;
-//   border-radius: 10px;
-// }
-
-// .excursion-list {
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   grid-gap: 1rem;
-// }
-
-// .item {
-//   order: 3;
-// }
-// .grid-container {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-gap: 1rem;
-//   border-radius: 10px;
-// }
-
-// .excursion-card {
-//   list-style: none;
-// }
-// .grid-container {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-gap: 1rem;
-//   border-radius: 10px;
-// }
-
-// .excursion-card {
-//   list-style: none;
-//   background-color: #f8f8f8; /* Add a light background color */
-//   padding: 10px;
-//   border-radius: 8px;
-//   transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
-// }
-
-// .excursion-card:hover {
-//   transform: scale(1.05); /* Enlarge the card on hover */
-// }
-
-// .excursion-image {
-//   object-fit: cover;
-//   border-radius: 8px;
-//   width: 100%;
-//   height: 150px; /* Adjust the height as needed */
-//   margin-bottom: 8px; /* Add some space between the image and title */
-// }
-
-// .excursion-title {
-//   font-weight: bold;
-//   font-size: 16px;
-//   margin-bottom: 8px;
-// }
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -138,18 +6,18 @@
   text-align: center;
 }
 .excursion-card {
-  // list-style: none;
-  background-color: #F8F8F8; /* Add a light background color */
+  background-color: #f8f8f8; /* Add a light background color */
   padding: 10px;
   border-radius: 8px;
   transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
  // box-shadow: 1px 1px 10px rgb(85, 105, 118);;
   max-height: 900px;
   // min-height: 500px;
-}
+
 .excursion-card:hover{
   box-shadow: 1px 1px 10px rgb(85, 105, 118);
 }
+
 .excursion-card:hover {
   transform: scale(1.05); /* Enlarge the card on hover */
 }
@@ -169,31 +37,39 @@
   height: 170px;
   overflow: scroll;
 }
+
 .excursion-info::-webkit-scrollbar {
   display: none;
 }
+
 // Blending the text in the search bar with the background
 .pretty-searchbar input[type="text"] {
   color: transparent; // Hides the text
+
   &:focus {
     color: #5A5766; // Changes text to #5A5766 when selected
+
     &::placeholder {
       color: transparent; // Hides placeholder text
     }
+
     &::selection,
     &::-moz-selection {
       background-color: yellow; // Yellow color for selected text
     }
+    
     outline: none; // Remove default outline
     border-bottom: 2px solid #5A5766; // #5A5766 underline
   }
 }
+
 // Styling for the search button
 .pretty-search-btn {
   background-color: #5A5766;
   border: none; // Remove default button border
   color: white; // White text color
   position: relative; // Positioning context for icon
+
   i {
     position: absolute;
     top: 50%;
@@ -202,12 +78,14 @@
     color: white; // White icon color
   }
 }
+
 // Positioning the search icon at the end of the search bar
 .pretty-searchbar {
   position: relative;
   .search-input {
     padding-right: 40px; // Adjust space for the icon
   }
+
   .pretty-search-btn {
     position: absolute;
     margin-right: 0px;
@@ -217,6 +95,7 @@
     padding: 6px 25px; // Ad
   }
 }
+
 .pretty-searchbar input[type="text"].form-control:focus {
   outline: none;
   box-shadow: none;
