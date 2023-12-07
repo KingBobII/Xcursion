@@ -9,12 +9,21 @@
   max-width: 400px;
   border-radius: 4px;
   padding: 8px;
-  min-height: 80px;
+  min-height: 40px;
 }
 .sender-style {
-  background-color: lightcoral;
+  background-color: #C4776E;
 }
 .receiver-style {
-  background-color: lightblue;
+  background-color: #A2BAA1;
 }
 
+.message {
+  small {
+    opacity: 50%;
+  }
+  p {
+    margin-bottom: 0px;
+    font-size: 14px;
+  }
+}

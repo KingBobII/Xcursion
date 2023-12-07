@@ -20,7 +20,7 @@
   <ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdownExcursions">
     <li><%= link_to "View All", excursions_path, class: "dropdown-item text-white" %></li>
     <li><%= link_to "Create New", new_excursion_path, class: "dropdown-item text-white" %></li>
-    <li><%= link_to "Inspire Me",  inspirations_new_path, class: "dropdown-item text-white" %></li>
+    <li><%= link_to "Inspire Me",  new_inspiration_path, class: "dropdown-item text-white" %></li>
   </ul>
 
 
@@ -39,8 +39,6 @@
   <%= link_to image_tag(current_user.image, width: 45, height: 45, class: "rounded-circle", alt: "User Photo"), '#', class: "nav-link btn btn-outline-info me-2 dropdown-toggle", id: "navbarDropdown", 'data-bs-toggle': "dropdown", 'aria-expanded': "false" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </div>
           </li>

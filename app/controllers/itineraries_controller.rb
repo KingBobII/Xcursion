@@ -14,6 +14,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @excursions = @itinerary.excursions
     @participant = Participant.new
     @available_users = User.where.not(id: @itinerary.participants.pluck(:user_id))
     # @chatroom = Chatroom.find_by(itinerary_id: @itinerary.id)
