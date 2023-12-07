@@ -16,9 +16,12 @@ class InspirationsController < ApplicationController
 
   def show
     @inspiration = Inspiration.find(params[:id])
+    @excursion = Excursion.new(title: "inspired name", capacity: @inspiration.capacity, city: @inspiration.location,
+                               length: "@inspiration.duration", description: "inspired description",
+                               setting: @inspiration.setting, category: "inspired category")
     @suggestions = generate_excursion_suggestions(@inspiration)
     @suggestions_array = @suggestions[0].split("\n\n")
-    @excursion = Excursion.new
+    # @excursion = Excursion.new
   end
 
   private

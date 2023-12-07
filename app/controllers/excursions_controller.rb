@@ -44,7 +44,7 @@ class ExcursionsController < ApplicationController
     @user = current_user
     @excursion.user = @user
     if @excursion.save
-      redirect_to root_path, notice: "Excursion was successfully created."
+      redirect_to excursion_path(@excursion), notice: "Excursion was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -82,6 +82,6 @@ class ExcursionsController < ApplicationController
   end
 
   def excursion_params
-    params.require(:excursion).permit(:title, :city, :capacity, :category, :length, :description, image: [])
+    params.require(:excursion).permit(:title, :city, :capacity, :setting, :category, :length, :description, image: [])
   end
 end

@@ -12,5 +12,5 @@ class Excursion < ApplicationRecord
   has_one_attached :image
   has_many :votes, dependent: :destroy
 
-  validates :title, :city, :capacity, :length, :description, :category, presence: true
+  validates :title, :city, :capacity, :duration, :description, :setting, :category, presence: true
 end

@@ -1,12 +1,13 @@
 class CreateInspirations < ActiveRecord::Migration[7.1]
   def change
     create_table :inspirations do |t|
+      t.string :city
       t.integer :capacity
-      t.integer :budget
+      t.integer :duration
+      t.string :category
       t.string :setting
-      t.string :location
+      t.integer :budget
       t.string :interests
-      t.string :duration
       t.text :requirements
 
       t.timestamps

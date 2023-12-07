@@ -51,12 +51,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_105317) do
 
   create_table "excursions", force: :cascade do |t|
     t.string "title"
+    t.text "description"
     t.string "image"
     t.string "city"
     t.integer "capacity"
-    t.integer "length"
-    t.text "description"
+    t.integer "duration"
     t.string "category"
+    t.string "setting"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,12 +67,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_105317) do
   end
 
   create_table "inspirations", force: :cascade do |t|
+    t.string "city"
     t.integer "capacity"
-    t.integer "budget"
+    t.integer "duration"
+    t.string "category"
     t.string "setting"
-    t.string "location"
+    t.integer "budget"
     t.string "interests"
-    t.string "duration"
     t.text "requirements"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
