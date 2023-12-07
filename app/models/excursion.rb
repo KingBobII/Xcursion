@@ -12,5 +12,5 @@ class Excursion < ApplicationRecord
   has_many :itineraries, through: :itinerary_excursions
   has_one_attached :image
 
-  validates :title, :image, :city, :capacity, :length, :description, :category, presence: true
+  validates :title, :city, :capacity, :duration, :description, :setting, :category, presence: true
 end

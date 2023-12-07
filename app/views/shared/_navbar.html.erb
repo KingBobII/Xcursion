@@ -11,6 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
+
   <div class="d-flex align-items-center">
           <li class="nav-item dropdown">
   <a class="nav-link btn btn-outline-success me-2 dropdown-toggle" href="#" id="navbarDropdownExcursions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,8 +20,9 @@
   <ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdownExcursions">
     <li><%= link_to "View All", excursions_path, class: "dropdown-item text-white" %></li>
     <li><%= link_to "Create New", new_excursion_path, class: "dropdown-item text-white" %></li>
+    <li><%= link_to "Inspire Me",  inspirations_new_path, class: "dropdown-item text-white" %></li>
   </ul>
-</li>
+
 
           <li class="nav-item dropdown">
   <a class="nav-link btn btn-outline-info me- dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,6 +33,7 @@
     <li><%= link_to "Create New", new_itinerary_path, class: "dropdown-item text-white" %></li>
   </ul>
 </li>
+
           <li class="nav-item dropdown">
             <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   <%= link_to image_tag(current_user.image, width: 45, height: 45, class: "rounded-circle", alt: "User Photo"), '#', class: "nav-link btn btn-outline-info me-2 dropdown-toggle", id: "navbarDropdown", 'data-bs-toggle': "dropdown", 'aria-expanded': "false" %>

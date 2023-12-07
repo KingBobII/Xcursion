@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  #Upvote and Downvote on Excursion
+  # Upvote and Downvote on Excursion
   resources :excursions do
     member do
       put "like", to: "excursions#upvote"
@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :itinerary_messages, only: :create
     # end
   end
+
+  resources :inspirations, only: [:new, :create, :show]
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check

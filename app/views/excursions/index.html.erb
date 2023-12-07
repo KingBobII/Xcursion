@@ -1,61 +1,26 @@
-<!--<div class="container my-4">
-  <h1>Suggested Things To Do:</h1>
-  <%#= form_with url: search_excursions_path, method: :get, class: "mb-4" do |form|%>-->
-    <%#= form.text_field :query, placeholder: 'Search for excursions...', class: "form-control" %>
-    <%#= form.submit 'Search', class: "btn btn-primary mt-2" %>
-  <%# end %>
-  <%#= form_tag(search_excursions_path, method: :get, class: "mb-4") do %>
-    <%#= text_field_tag :query, params[:query], placeholder: 'Search for excursions...', class: "form-control" %>
-    <%#= submit_tag 'Search', class: "btn btn-primary mt-2" %>
-  <%# end %>
-<!--
-  <div class="grid-container">
-    <%# @excursions.each do |excursion| %>-->
-      <%#= link_to excursion_path(excursion), class: "excursion-link" do %>
-<!--        <div class="excursion-card item">
-          <h3 class="excursion-title"><%#= excursion.title %></h3>
-          <%# if excursion.image.present? %>-->
-            <%#= cl_image_tag excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill %>
-          <%# else %>
-            <%#= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image" %>
-          <%# end %>
-<!--          <p><strong>City:</strong> <%#= excursion.city %></p>
-          <p><strong>Category:</strong> <%#= excursion.category %></p>
-          <p><strong>Description:</strong> <%#= excursion.description %></p>
-        </div>
-      <%# end %>-->
-    <%# end %>
-<!--  </div>
-</div>
--->
-<%#= raise %>
-<div class="container my-4 pretty-searchbar" data-controller="search-excursions">
-
+<div class="container my-4" data-controller="search-excursions">
   <%= form_with url: excursions_path, method: :get, html: {class: "mb-4", data: {search_excursions_target: "form"}} do |f|%>
-  <div class="pretty-searchbar">
     <%= f.text_field :query,
-                    placeholder: 'Search for excursions...',
-                    class: "form-control search-input",
-                    value: params[:query],
-                    data: {search_excursions_target: "input",
-                          action: "keyup->search-excursions#update"}
-                    %>
-    <button type="submit" class="btn btn-primary pretty-search-btn" data-action="submit->search-excursions#search">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-  </div>
-<% end %>
-
+                      placeholder: 'Search for excursions...',
+                      class: "form-control",
+                      value: params[:query],
+                      data: {search_excursions_target: "input",
+                            action: "keyup->search-excursions#update"}
+                      %>
+    <%= f.submit 'Search', class: "btn btn-primary mt-2", data: { action: "submit->search-excursions#search" } %>
+  <% end %>
 
 
   <script>
     const cloudinaryImageUrl = "<%= cl_image_path('your_image_key', { class: 'excursion-image', alt: 'Image of an Excursion', crop: :fill }) %>";
   </script>
 
-<%= javascript_include_tag 'controllers/search_excursions_controller' %>
-<h1>Excursions</h1>
+ <%= javascript_include_tag 'controllers/search_excursions_controller' %>
+ <h1>Excursions</h1>
+
 
   <div class="grid-container" data-search-excursions-target="list">
+
   <% if @excursions.present? %>
     <% @excursions.each do |excursion| %>
       <%= link_to excursion_path(excursion), class: "excursion-link" do %>
@@ -65,7 +30,7 @@
             <% if excursion.image.present? %>
               <%= cl_image_tag excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill %>
             <% else %>
-              <%= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image" %>
+              <%= image_tag "https://source.unsplash.com/800x600/?excursion,#{excursion.title.parameterize}", class: "excursion-image" %>
             <% end %>
           </div>
           <div class="excursion-info">
@@ -79,34 +44,4 @@
     <p>No excursions found.</p>
   <% end %>
 </div>
-
-
-
-
-
-  <!--<template id=>
-    <div class="grid-container" data-search-excursions-target="list">
-      <%# if @excursions.present? %>-->
-        <%# @excursions.each do |excursion| %>
-          <%#= link_to excursion_path(excursion), class: "excursion-link" do %>
-<!--            <div class="excursion-card item">
-              <h3 class="excursion-title"><%#= excursion[:title] %></h3>
-              <%# if excursion[:image].present? %>-->
-                <%#= cl_image_tag excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill %>
-              <%# else %>
-                <%#= image_tag "https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image" %>
-              <%# end %>
-<!--              <p><strong>City:</strong> <%#= excursion[:city] %></p>
-              <p><strong>Category:</strong> <%#= excursion[:category] %></p>
-              <p><strong>Description:</strong> <%#= excursion[:description] %></p>
-            </div>
-          <%# end %>-->
-        <%# end %>
-      <%# else %>
-<!--        <p>No excursions found.</p>-->
-      <%# end %>
-<!--    </div>
--->
-
-
 </div>
