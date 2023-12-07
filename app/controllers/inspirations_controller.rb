@@ -16,28 +16,27 @@ class InspirationsController < ApplicationController
 
   def show
     @inspiration = Inspiration.find(params[:id])
-    @excursion = Excursion.new(title: "inspired name", capacity: @inspiration.capacity, city: @inspiration.location,
-                               length: "@inspiration.duration", description: "inspired description",
+    @excursion = Excursion.new(title: "inspired name", capacity: @inspiration.capacity, city: @inspiration.city,
+                               duration: "@inspiration.duration", description: "inspired description",
                                setting: @inspiration.setting, category: "inspired category")
     @suggestions = generate_excursion_suggestions(@inspiration)
     @suggestions_array = @suggestions[0].split("\n\n")
-    # @excursion = Excursion.new
   end
 
   private
 
   def inspiration_params
-    params.require(:inspiration).permit(:capacity, :budget, :setting, :location, :interests, :duration, :requirements)
+    params.require(:inspiration).permit(:capacity, :budget, :setting, :city, :interests, :duration, :requirements)
   end
 
   def generate_excursion_suggestions(inspiration)
     client = OpenAI::Client.new
 
-    prompt = "Suggest 10 excursions based on the following inspiration:\n"
+    prompt = "Suggest 10 excursions based on the following inspiration.give a title for it and a description:\n"
     prompt += "Capacity: #{inspiration.capacity}\n"
     prompt += "Budget: #{inspiration.budget}\n"
     prompt += "Setting: #{inspiration.setting}\n"
-    prompt += "Location: #{inspiration.location}\n"
+    prompt += "City: #{inspiration.city}\n"
     prompt += "Interests: #{inspiration.interests}\n"
     prompt += "Duration: #{inspiration.duration}\n"
     prompt += "Requirements: #{inspiration.requirements}\n"

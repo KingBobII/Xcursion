@@ -98,25 +98,61 @@
 // .excursion-card {
 //   list-style: none;
 // }
+// .grid-container {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   grid-gap: 1rem;
+//   border-radius: 10px;
+// }
+
+// .excursion-card {
+//   list-style: none;
+//   background-color: #f8f8f8; /* Add a light background color */
+//   padding: 10px;
+//   border-radius: 8px;
+//   transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+// }
+
+// .excursion-card:hover {
+//   transform: scale(1.05); /* Enlarge the card on hover */
+// }
+
+// .excursion-image {
+//   object-fit: cover;
+//   border-radius: 8px;
+//   width: 100%;
+//   height: 150px; /* Adjust the height as needed */
+//   margin-bottom: 8px; /* Add some space between the image and title */
+// }
+
+// .excursion-title {
+//   font-weight: bold;
+//   font-size: 16px;
+//   margin-bottom: 8px;
+// }
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   border-radius: 10px;
+  text-align: center;
 }
-
 .excursion-card {
-  list-style: none;
-  background-color: #f8f8f8; /* Add a light background color */
+  // list-style: none;
+  background-color: #F8F8F8; /* Add a light background color */
   padding: 10px;
   border-radius: 8px;
   transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+ // box-shadow: 1px 1px 10px rgb(85, 105, 118);;
+  max-height: 900px;
+  // min-height: 500px;
 }
-
+.excursion-card:hover{
+  box-shadow: 1px 1px 10px rgb(85, 105, 118);
+}
 .excursion-card:hover {
   transform: scale(1.05); /* Enlarge the card on hover */
 }
-
 .excursion-image {
   object-fit: cover;
   border-radius: 8px;
@@ -124,9 +160,65 @@
   height: 150px; /* Adjust the height as needed */
   margin-bottom: 8px; /* Add some space between the image and title */
 }
-
 .excursion-title {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 8px;
+}
+.excursion-info{
+  height: 170px;
+  overflow: scroll;
+}
+.excursion-info::-webkit-scrollbar {
+  display: none;
+}
+// Blending the text in the search bar with the background
+.pretty-searchbar input[type="text"] {
+  color: transparent; // Hides the text
+  &:focus {
+    color: #5A5766; // Changes text to #5A5766 when selected
+    &::placeholder {
+      color: transparent; // Hides placeholder text
+    }
+    &::selection,
+    &::-moz-selection {
+      background-color: yellow; // Yellow color for selected text
+    }
+    outline: none; // Remove default outline
+    border-bottom: 2px solid #5A5766; // #5A5766 underline
+  }
+}
+// Styling for the search button
+.pretty-search-btn {
+  background-color: #5A5766;
+  border: none; // Remove default button border
+  color: white; // White text color
+  position: relative; // Positioning context for icon
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; // White icon color
+  }
+}
+// Positioning the search icon at the end of the search bar
+.pretty-searchbar {
+  position: relative;
+  .search-input {
+    padding-right: 40px; // Adjust space for the icon
+  }
+  .pretty-search-btn {
+    position: absolute;
+    margin-right: 0px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 25px; // Ad
+  }
+}
+.pretty-searchbar input[type="text"].form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #5A5766;
 }

@@ -12,10 +12,9 @@
     <h1>Create An Inspired Excursion</h1>
     <%= simple_form_for @excursion do |form| %>
       <%= form.input :title, placeholder: 'Enter the title' %>
-      <%#= form.input :photo, as: :file , placeholder: 'Choose an image' %>
       <%= form.input :city, placeholder: 'Enter the city' %>
       <%= form.input :capacity, placeholder: 'Enter the capacity' %>
-      <%= form.input :length, placeholder: 'Enter the length' %>
+      <%= form.input :duration, placeholder: 'Enter the length' %>
       <%= form.input :description, placeholder: 'Enter the description' %>
       <%= form.input :setting, collection: ['Family', 'Friends', 'Business', 'Romantic'], prompt: 'Select a setting', placeholder: 'Select a setting' %>
       <%= form.input :category, prompt: 'Describe the vibe', placeholder: 'Describe the vibe' %>

@@ -2,12 +2,11 @@
   <h1>Generate AI Suggested Excursions:</h1>
 
   <%= simple_form_for(@inspiration, url: inspirations_path) do |f| %>
-    <%= f.input :location, label: "Destination or City", placeholder: "e.g., Paris, New York" %>
+    <%= f.input :city, label: "Destination or City", placeholder: "e.g., Paris, New York" %>
     <%= f.input :setting, collection: ['Family', 'Friends', 'Business', 'Romantic'],
                           label: "What is the setting?" %>
 
-    <%= f.input :duration, collection: ['Half-Day or Shorter', 'Full-Day', 'Multiple Days'],
-                            label: "Duration" %>
+    <%= f.input :duration, placeholder: 'Enter the length' %>
 
     <%= f.input :budget, label: "Budget (in ZAR)",
                         placeholder: "Enter your budget" %>

@@ -13,11 +13,9 @@
 
   <p><%= link_to 'Back', itineraries_path,class: "btn btn-info" %></p>
   <%= link_to 'Edit', edit_itinerary_path, class: "btn btn-primary" %></p>
-  <%#= link_to 'Chat', itinerary_chatroom_path(@itinerary, @chatroom), class: "btn btn-primary" %>
+
   <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-  <%#= simple_form_for @itinerary, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
-    <%#= f.button :submit, "Add Participants" %>
-  <%# end %>
+
   <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
     <% @available_users.each do |user| %>
       <%= f.label :user_id, value: user.id %>
