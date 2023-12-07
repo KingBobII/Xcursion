@@ -19,6 +19,7 @@ class ExcursionsController < ApplicationController
           description: excursion.description,
           capacity: excursion.capacity,
           category: excursion.category,
+          setting: excursion.setting,
           review: excursion.review,
           duration: excursion.duration,
           average_rating: excursion.average_rating

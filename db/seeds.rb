@@ -27,17 +27,15 @@ puts "creating users"
 user1 = User.create!(
   username: 'Jack',
   password: 'password',
-
   email: 'jack@example.com',
   bio: 'Adventure seeker and nature lover.',
-  image: 'https://cdn-icons-png.flaticon.com/128/4333/4333609.png',
+  image: 'https://cdn-icons-png.flaticon.com/128/4333/4333609.png'
 )
 
 user2 = User.create!(
   username: 'Tony',
   password: 'password',
   email: 'tony@example.com',
-
   image: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_avatar_child_kid-128.png',
   bio: 'Travel enthusiast and foodie.'
 )
@@ -83,7 +81,7 @@ def create_excursion(title, city, capacity, category, setting, duration, descrip
   excursion_url = "https://source.unsplash.com/800x600/?excursion,#{excursion.title.parameterize}"
   excursion_file = URI.open(excursion_url)
   excursion.image.attach(io: excursion_file, filename: "#{excursion.title.parameterize}_image.png", content_type: 'image/png')
-  excursion.save
+  excursion.save!
 end
 
 # Use the method to create various excursions
