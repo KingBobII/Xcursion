@@ -25,34 +25,48 @@ puts "creating users"
 # Create Users
 # Create Users
 user1 = User.create!(
-  username: 'john_doe',
+  username: 'Jack',
   password: 'password',
-  email: 'john@example.com',
+  
+  email: 'jack@example.com',
+  bio: 'Adventure seeker and nature lover.'
+,
   image: 'https://cdn-icons-png.flaticon.com/128/4333/4333609.png',
-  bio: 'Adventure seeker and nature lover.',
 )
 
 user2 = User.create!(
-  username: 'jane_smith',
+  username: 'Tony',
   password: 'password',
-  email: 'jane@example.com',
+  email: 'tony@example.com',
+
   image: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_avatar_child_kid-128.png',
   bio: 'Travel enthusiast and foodie.'
 )
 
 user3 = User.create!(
-  username: 'alex_adventures',
+  username: 'April',
   password: 'password',
-  email: 'alex@example.com',
-  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png',
+  email: 'april@example.com',
   bio: 'Passionate about exploring the world and creating unforgettable memories.'
 )
 
-puts "creating excursions"
-# Create Excursions
+user4 = User.create!(
+  username: 'Miles',
+  password: 'password',
+  email: 'miles@example.com',
+  bio: 'Passionate about exploring the world and creating unforgettable memories.'
+)
 
-# Excursion 1
-# Excursion 1
+user5 = User.create!(
+  username: 'James',
+  password: 'password',
+  email: 'james@example.com',
+  bio: 'Passionate about exploring the world and creating unforgettable memories.'
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png',
+)
+
+puts "creating excursions"
+
 excursion1 = Excursion.new(
   title: 'Table Mountain Hike',
   city: 'Cape Town, Western Cape, South Africa',
@@ -518,10 +532,393 @@ excursion29 = Excursion.new(
   description: 'Stroll through the beautiful Kirstenbosch National Botanical Gardens.',
   user: User.all.sample
 )
-excursion29_url = "https://source.unsplash.com/800x600/?excursion,#{excursion29.title.parameterize}"
-excursion29_file = URI.open(excursion29_url)
-excursion29.image.attach(io: excursion29_file, filename: "#{excursion29.title.parameterize}_image.png", content_type: 'image/png')
-excursion29.save
+
+ puts "creating excursions"
+
+# Define a method to create excursions
+def create_excursion(title, city, capacity, category, setting, duration, description, user)
+  excursion = Excursion.new(
+    title: title,
+    city: city,
+    capacity: capacity,
+    category: category,
+    setting: setting,
+    duration: duration,
+    description: description,
+    user: user
+    # Add other attributes like average_rating or review if necessary
+  )
+
+  excursion_url = "https://source.unsplash.com/800x600/?excursion,#{excursion.title.parameterize}"
+  excursion_file = URI.open(excursion_url)
+  excursion.image.attach(io: excursion_file, filename: "#{excursion.title.parameterize}_image.png", content_type: 'image/png')
+  excursion.save
+end
+
+# Use the method to create various excursions
+create_excursion(
+  'Table Mountain Hike',
+  'Cape Town',
+  20,
+  'Hiking',
+  'Friends',
+  4,
+  'Ascend to the summit of Table Mountain and enjoy panoramic views of the city and coastline.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Peninsula Coastal Drive',
+  'Cape Town',
+  15,
+  'Scenic Drive',
+  'Family',
+  5,
+  'Explore the stunning coastal landscapes along the Cape Peninsula.',
+  User.all.sample
+)
+
+# ... repeat for other excursions ...
+create_excursion(
+  'Sunset Kayaking in Table Bay',
+  'Cape Town',
+  10,
+  'Water Adventure',
+  'Friends',
+  3,
+  'Paddle through the sparkling waters of Table Bay as the sun sets over the Atlantic Ocean.',
+  User.all.sample
+)
+
+create_excursion(
+  'Culinary Delights in Bo-Kaap',
+  'Cape Town',
+  12,
+  'Food Exploration',
+  'Family',
+  1,
+  'Explore the vibrant Bo-Kaap neighborhood, savoring the rich flavors of Cape Malay cuisine.',
+  User.all.sample
+)
+
+create_excursion(
+  'Art Walk through Woodstock',
+  'Cape Town',
+  8,
+  'Cultural Exploration',
+  'Friends',
+  4,
+  'Immerse yourself in the eclectic art scene of Woodstock with a guided walking tour.',
+  User.all.sample
+)
+
+create_excursion(
+  'Wine Tasting in Stellenbosch',
+  'Stellenbosch',
+  20,
+  'Wine Tour',
+  'Romantic',
+  1,
+  'Indulge in a day of wine tasting amidst the picturesque vineyards of Stellenbosch.',
+  User.all.sample
+)
+
+create_excursion(
+  'Scenic Helicopter Tour',
+  'Cape Town',
+  5,
+  'Aerial Adventure',
+  'Family',
+  1,
+  'Soar above Cape Towns landmarks on a thrilling helicopter tour with breathtaking views.',
+  User.all.sample
+)
+
+create_excursion(
+  'Historical Robben Island Visit',
+  'Cape Town',
+  15,
+  'Historical Exploration',
+  'Educational',
+  3,
+  'Uncover the history of South Africa with a guided tour of Robben Island.',
+  User.all.sample
+)
+
+create_excursion(
+  'Surfing Lesson in Muizenberg',
+  'Cape Town',
+  10,
+  'Water Adventure',
+  'Friends',
+  2,
+  'Catch the waves with a surfing lesson at the iconic Muizenberg Beach.',
+  User.all.sample
+)
+
+create_excursion(
+  'Sunrise Yoga at Camps Bay',
+  'Cape Town',
+  8,
+  'Wellness Retreat',
+  'Romantic',
+  1,
+  'Welcome the day with a peaceful sunrise yoga session overlooking Camps Bay.',
+  User.all.sample
+)
+
+create_excursion(
+  'Adventure Zip-lining in Ceres',
+  'Ceres',
+  12,
+  'Adventure Sport',
+  'Family',
+  3,
+  'Experience an adrenaline rush with a zip-lining adventure in the Ceres Valley.',
+  User.all.sample
+)
+
+create_excursion(
+  'Nature Walk in Kirstenbosch Gardens',
+  'Cape Town',
+  10,
+  'Nature Exploration',
+  'Friends',
+  2,
+  'Stroll through the botanical wonders of Kirstenbosch National Botanical Garden.',
+  User.all.sample
+)
+
+create_excursion(
+  'Lion\'s Head Full Moon Hike',
+  'Cape Town',
+  15,
+  'Hiking',
+  'Friends',
+  2,
+  'Embark on a thrilling full moon hike to the summit of Lions Head.',
+  User.all.sample
+)
+create_excursion(
+  'Sunset Safari in Aquila Game Reserve',
+  'Touws River',
+  15,
+  'Wildlife Adventure',
+  'Family',
+  2,
+  'Embark on a thrilling sunset safari to witness Africa\'s majestic wildlife in Aquila Game Reserve.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Point Scenic Helicopter Tour',
+  'Cape Town',
+  5,
+  'Aerial Adventure',
+  'Romantic',
+  1,
+  'Soar above the breathtaking landscapes of Cape Point on a scenic helicopter tour.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Winelands Hot Air Balloon Ride',
+  'Stellenbosch',
+  10,
+  'Wine Tour',
+  'Romantic',
+  3,
+  'Float over the picturesque Cape Winelands in a hot air balloon and enjoy panoramic views.',
+  User.all.sample
+)
+
+create_excursion(
+  'Abseiling Adventure in Table Mountain',
+  'Cape Town',
+  8,
+  'Adventure Sport',
+  'Friends',
+  2,
+  'Challenge yourself with an exhilarating abseiling experience down Table Mountain cliffs.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Town Street Art Exploration',
+  'Cape Town',
+  10,
+  'Cultural Exploration',
+  'Friends',
+  1,
+  'Discover the vibrant street art scene of Cape Town through a guided walking tour.',
+  User.all.sample
+)
+
+create_excursion(
+  'Culinary Cruise in Hout Bay',
+  'Hout Bay',
+  12,
+  'Food Exploration',
+  'Family',
+  2,
+  'Savor the flavors of Hout Bay with a culinary cruise featuring local delicacies.',
+  User.all.sample
+)
+
+create_excursion(
+  'Kite Surfing Lesson in Bloubergstrand',
+  'Cape Town',
+  10,
+  'Water Adventure',
+  'Friends',
+  2,
+  'Learn the exhilarating sport of kite surfing on the beautiful beaches of Bloubergstrand.',
+  User.all.sample
+)
+
+create_excursion(
+  'Rock Climbing in Silvermine Nature Reserve',
+  'Cape Town',
+  8,
+  'Adventure Sport',
+  'Friends',
+  2,
+  'Experience the thrill of rock climbing surrounded by the scenic beauty of Silvermine Nature Reserve.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Town Jazz Safari Experience',
+  'Cape Town',
+  15,
+  'Music and Culture',
+  'Friends',
+  2,
+  'Immerse yourself in the rich jazz culture of Cape Town with a musical safari experience.',
+  User.all.sample
+)
+
+create_excursion(
+  'Ocean Kayaking with Penguins',
+  'Simon\'s Town',
+  10,
+  'Wildlife Adventure',
+  'Family',
+  2,
+  'Paddle alongside adorable penguins in Simon\'s Town during a unique ocean kayaking adventure.',
+  User.all.sample
+)
+create_excursion(
+  'Robben Island Historical Tour',
+  'Cape Town',
+  20,
+  'Historical',
+  'Educational',
+  3,
+  'Visit Robben Island and learn about its rich history and significance as a World Heritage Site.',
+  User.all.sample
+)
+
+create_excursion(
+  'Bo-Kaap Culinary Experience',
+  'Cape Town',
+  10,
+  'Culinary',
+  'Couples',
+  2,
+  'Discover the flavors of Cape Malay cuisine with a cooking class in the colorful Bo-Kaap neighborhood.',
+  User.all.sample
+)
+
+create_excursion(
+  'Kirstenbosch Botanical Gardens Tour',
+  'Cape Town',
+  15,
+  'Nature Walk',
+  'Family',
+  3,
+  'Enjoy a guided tour of the Kirstenbosch Botanical Gardens, one of the great botanic gardens of the world.',
+  User.all.sample
+)
+
+create_excursion(
+  'Boulders Beach Penguin Encounter',
+  'Cape Town',
+  12,
+  'Wildlife',
+  'Family',
+  2,
+  'Visit Boulders Beach and enjoy the unique experience of seeing African penguins in their natural habitat.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Winelands Tour',
+  'Stellenbosch',
+  8,
+  'Wine Tasting',
+  'Friends',
+  6,
+  'Explore the scenic vineyards of the Cape Winelands and enjoy tastings of world-renowned wines.',
+  User.all.sample
+)
+
+create_excursion(
+  'Table Mountain Cable Car Ride',
+  'Cape Town',
+  20,
+  'Sightseeing',
+  'Tourists',
+  1,
+  'Experience breathtaking views of Cape Town from the Table Mountain Aerial Cableway.',
+  User.all.sample
+)
+
+create_excursion(
+  'Cape Point Nature Reserve Hike',
+  'Cape Town',
+  10,
+  'Hiking',
+  'Adventure',
+  4,
+  'Embark on a hike in Cape Point Nature Reserve and discover its diverse flora and fauna.',
+  User.all.sample
+)
+
+create_excursion(
+  'Groot Constantia Wine Estate Visit',
+  'Cape Town',
+  15,
+  'Wine Tasting',
+  'Adults',
+  3,
+  'Visit Groot Constantia, South Africas oldest wine producing estate, for a tour and wine tasting.',
+  User.all.sample
+)
+
+create_excursion(
+  'Signal Hill Sunset Viewing',
+  'Cape Town',
+  20,
+  'Scenic View',
+  'Romantic',
+  2,
+  'Witness a spectacular sunset from Signal Hill with panoramic views of the city and ocean.',
+  User.all.sample
+)
+
+create_excursion(
+  'Chapman\'s Peak Drive',
+  'Cape Town',
+  15,
+  'Scenic Drive',
+  'Adventure',
+  4,
+  'Drive along the breathtaking Chapman\'s Peak Drive, known for its stunning ocean views.',
+  User.all.sample
+)
+
+# Add more excursions following the same pattern
 
 # Continue the pattern for the remaining excursions (excursion3 to excursion15)
 # ...
@@ -769,35 +1166,39 @@ puts "#{Itinerary.count} itineraries created"
 puts "creating reviews"
 # Create Reviews
 review_data = [
-  { content: 'A fantastic journey through the winelands. The wines were exceptional, and the scenery was breathtaking!', user_rating: 5, excursion_id: excursion1.id },
-  { content: 'Horseback riding on Noordhoek Beach was a dream come true. The horses were well-trained, and the beach was pristine.', user_rating: 4, excursion_id: excursion2.id},
-  { content: 'The historical tour of Robben Island left a profound impact. Its a must-visit to understand South Africas history.', user_rating: 5, excursion_id: excursion3.id },
-  { content: 'The helicopter tour provided an unforgettable aerial perspective of Cape Town. The pilot was skilled, and the views were stunning.', user_rating: 5, excursion_id: excursion4.id },
-  { content: 'Whale watching in Hermanus was incredible. We saw multiple whales breaching, a truly mesmerizing experience.', user_rating: 5, excursion_id: excursion5.id },
-  { content: 'Kloofing in Jonkershoek Nature Reserve was an adrenaline rush. The guides were knowledgeable and ensured our safety.', user_rating: 4, excursion_id: excursion6.id },
-  { content: 'The Segway tour at Spier Wine Farm was a fun and unique way to explore the vineyards. The wines were excellent too.', user_rating: 4, excursion_id: excursion7.id },
-  { content: 'Muizenberg surfing lesson was fantastic for beginners. The instructor was patient, and the waves were ideal for learning.', user_rating: 4, excursion_id: excursion8.id },
-  { content: 'The Tygerberg Nature Reserve trail offered a peaceful escape. The diverse flora and fauna made the hike enjoyable.', user_rating: 4, excursion_id: excursion9.id },
-  { content: 'Sunset catamaran cruise was a romantic experience. The crew was attentive, and the sunset views were mesmerizing.', user_rating: 5, excursion_id: excursion10.id },
-  { content: 'The Lion\'s Head Full Moon Hike was a magical experience. The moonlit views from the summit were awe-inspiring.', user_rating: 5, excursion_id: excursion11.id},
-  { content: 'The Hot Air Balloon Ride over Cape Winelands was a dreamy adventure. The sunrise and vineyard views were breathtaking.', user_rating: 5, excursion_id: excursion12.id },
-  { content: 'Exploring the street art in Cape Town was a vibrant and creative journey. Each mural told a unique story of the city.', user_rating: 4, excursion_id: excursion13.id },
-  { content: 'Chapman\'s Peak Drive at sunset was a picturesque drive with mesmerizing coastal views. A must for nature lovers.', user_rating: 5, excursion_id: excursion14.id},
-  { content: 'District Six Walking Tour provided a deep understanding of the area\'s history. The guide was knowledgeable and engaging.', user_rating: 4, excursion_id: excursion15.id },
-  { content: 'Signal Hill Sunset was a serene experience with panoramic views of Cape Town. Perfect for a peaceful evening.', user_rating: 5, excursion_id: excursion16.id },
-  { content: 'Cape Town Street Art Exploration was a colorful journey through the city\'s creative and expressive neighborhoods.', user_rating: 4, excursion_id: excursion17.id },
-  { content: 'Chapman\'s Peak Drive Sunset offered breathtaking views of the coastline. An ideal spot for a romantic sunset.', user_rating: 5, excursion_id: excursion18.id},
-  { content: 'The City Bike Tour in San Francisco was a delightful way to explore iconic landmarks. The guide was friendly and informative.', user_rating: 4, excursion_id: excursion19.id },
-  { content: 'Boulders Beach Penguin Encounter was an adorable experience with the charming African penguins.', user_rating: 5, excursion_id: excursion20.id },
-  { content: 'The Kirstenbosch Canopy Walkway provided a unique treetop perspective of the botanical gardens. A peaceful and scenic stroll.', user_rating: 4, excursion_id: excursion21.id },
-  { content: 'Cape Town Comedy Club Night was a hilarious evening with top-notch comedians. Perfect for a night of laughter.', user_rating: 5, excursion_id: excursion22.id },
-  { content: 'A scenic hike through Table Mountain National Park. The views of Cape Town were breathtaking!', user_rating: 5, excursion_id: excursion23.id },
-  { content: 'The Cape Winelands tour was a delightful journey through picturesque vineyards. The wine tastings were exceptional.', user_rating: 4, excursion_id: excursion24.id },
-  { content: 'Exploring the historic Bo-Kaap neighborhood was a cultural delight. The vibrant colors and rich history were captivating.', user_rating: 5, excursion_id: excursion25.id },
-  { content: 'A thrilling paragliding experience off Signal Hill. The adrenaline rush and panoramic views made it unforgettable.', user_rating: 4, excursion_id: excursion26.id },
-  { content: 'The Shark Cage Diving adventure was an adrenaline-pumping experience. Getting up close with sharks was exhilarating.', user_rating: 5, excursion_id: excursion27.id },
-  { content: 'Discovering the magic of Kirstenbosch Botanical Gardens was a peaceful and scenic escape. The diverse plant life was fascinating.', user_rating: 4, excursion_id: excursion28.id },
-  { content: 'A captivating visit to the Iziko South African Museum. The exhibits showcased the rich cultural and natural heritage of the region.', user_rating: 5, excursion_id: excursion29.id }
+  { content: 'Ascend to the summit of Table Mountain and enjoy panoramic views of the city and coastline. A breathtaking experience!', user_rating: 5, excursion_id: Excursion.find_by(title: 'Table Mountain Hike').id },
+  { content: 'Explore the stunning coastal landscapes along the Cape Peninsula Coastal Drive. A picturesque journey with breathtaking views.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Cape Peninsula Coastal Drive').id },
+  { content: 'Paddle through the sparkling waters of Table Bay as the sun sets over the Atlantic Ocean. Sunset Kayaking is a magical adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Sunset Kayaking in Table Bay').id },
+  { content: 'Explore the vibrant Bo-Kaap neighborhood, savoring the rich flavors of Cape Malay cuisine. Culinary Delights in Bo-Kaap is a gastronomic journey.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Culinary Delights in Bo-Kaap').id },
+  { content: 'Immerse yourself in the eclectic art scene of Woodstock with a guided walking tour. Art Walk through Woodstock is a creative exploration.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Art Walk through Woodstock').id },
+  { content: 'Indulge in a day of wine tasting amidst the picturesque vineyards of Stellenbosch. Wine Tasting in Stellenbosch offers exceptional wines.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Wine Tasting in Stellenbosch').id },
+  { content: 'Soar above Cape Towns landmarks on a thrilling helicopter tour with breathtaking views. Scenic Helicopter Tour is an aerial adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
+  { content: 'Uncover the history of South Africa with a guided tour of Robben Island. Historical Robben Island Visit is an educational journey.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Historical Robben Island Visit').id },
+  { content: 'Catch the waves with a surfing lesson at the iconic Muizenberg Beach. Surfing Lesson in Muizenberg is fantastic for beginners.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Surfing Lesson in Muizenberg').id },
+  { content: 'Welcome the day with a peaceful sunrise yoga session overlooking Camps Bay. Sunrise Yoga at Camps Bay is a wellness retreat.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Sunrise Yoga at Camps Bay').id },
+  { content: 'Experience an adrenaline rush with a zip-lining adventure in the Ceres Valley. Adventure Zip-lining in Ceres is an exhilarating activity.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Adventure Zip-lining in Ceres').id },
+  { content: 'Stroll through the botanical wonders of Kirstenbosch National Botanical Garden. Nature Walk in Kirstenbosch Gardens is a peaceful escape.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Nature Walk in Kirstenbosch Gardens').id },
+  { content: 'Embark on a thrilling full moon hike to the summit of Lion\'s Head. Lion\'s Head Full Moon Hike is a magical experience.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Lion\'s Head Full Moon Hike').id },
+  { content: 'Embark on a thrilling sunset safari to witness Africa\'s majestic wildlife in Aquila Game Reserve. Sunset Safari in Aquila Game Reserve is an unforgettable adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Sunset Safari in Aquila Game Reserve').id },
+  { content: 'Soar above the breathtaking landscapes of Cape Point on a scenic helicopter tour. Cape Point Scenic Helicopter Tour is an aerial adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Cape Point Scenic Helicopter Tour').id },
+  { content: 'Float over the picturesque Cape Winelands in a hot air balloon and enjoy panoramic views. Cape Winelands Hot Air Balloon Ride is a dreamy adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Cape Winelands Hot Air Balloon Ride').id },
+  { content: 'Challenge yourself with an exhilarating abseiling experience down Table Mountain cliffs. Abseiling Adventure in Table Mountain is an adrenaline-pumping activity.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Abseiling Adventure in Table Mountain').id },
+  { content: 'Discover the vibrant street art scene of Cape Town through a guided walking tour. Cape Town Street Art Exploration is a colorful journey.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Cape Town Street Art Exploration').id },
+  { content: 'Savor the flavors of Hout Bay with a culinary cruise featuring local delicacies. Culinary Cruise in Hout Bay is a delightful food exploration.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Culinary Cruise in Hout Bay').id },
+  { content: 'Learn the exhilarating sport of kite surfing on the beautiful beaches of Bloubergstrand. Kite Surfing Lesson in Bloubergstrand is a thrilling water adventure.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Kite Surfing Lesson in Bloubergstrand').id },
+  { content: 'Experience the thrill of rock climbing surrounded by the scenic beauty of Silvermine Nature Reserve. Rock Climbing in Silvermine Nature Reserve is an adventurous activity.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Rock Climbing in Silvermine Nature Reserve').id },
+  { content: 'Immerse yourself in the rich jazz culture of Cape Town with a musical safari experience. Cape Town Jazz Safari Experience is a unique musical journey.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Cape Town Jazz Safari Experience').id },
+  { content: 'Paddle alongside adorable penguins in Simon\'s Town during a unique ocean kayaking adventure. Ocean Kayaking with Penguins is a wildlife adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Ocean Kayaking with Penguins').id },
+  { content: 'Visit Robben Island and learn about its rich history and significance as a World Heritage Site. Robben Island Historical Tour is an educational exploration.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Robben Island Historical Tour').id },
+  { content: 'Discover the flavors of Cape Malay cuisine with a cooking class in the colorful Bo-Kaap neighborhood. Bo-Kaap Culinary Experience is a culinary delight.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Bo-Kaap Culinary Experience').id },
+  { content: 'Enjoy a guided tour of the Kirstenbosch Botanical Gardens, one of the great botanic gardens of the world. Kirstenbosch Botanical Gardens Tour is a nature walk.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Kirstenbosch Botanical Gardens Tour').id },
+  { content: 'Visit Boulders Beach and enjoy the unique experience of seeing African penguins in their natural habitat. Boulders Beach Penguin Encounter is a wildlife adventure.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Boulders Beach Penguin Encounter').id },
+  { content: 'Explore the scenic vineyards of the Cape Winelands and enjoy tastings of world-renowned wines. Cape Winelands Tour is a wine tasting journey.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Cape Winelands Tour').id },
+  { content: 'Experience breathtaking views of Cape Town from the Table Mountain Aerial Cableway. Table Mountain Cable Car Ride offers a sightseeing adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Table Mountain Cable Car Ride').id },
+  { content: 'Embark on a hike in Cape Point Nature Reserve and discover its diverse flora and fauna. Cape Point Nature Reserve Hike is an adventurous hiking experience.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Cape Point Nature Reserve Hike').id },
+  { content: 'Visit Groot Constantia, South Africa\'s oldest wine-producing estate, for a tour and wine tasting. Groot Constantia Wine Estate Visit offers exceptional wines.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Groot Constantia Wine Estate Visit').id },
+  { content: 'Witness a spectacular sunset from Signal Hill with panoramic views of the city and ocean. Signal Hill Sunset Viewing is a romantic experience.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Signal Hill Sunset Viewing').id },
+  { content: 'Drive along the breathtaking Chapman\'s Peak Drive, known for its stunning ocean views. Chapman\'s Peak Drive is a scenic drive adventure.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Chapman\'s Peak Drive').id }
 ]
 
 review_data.each do |review_attrs|
@@ -819,35 +1220,3 @@ participant_data = [
 Participant.create!(participant_data)
 
 puts "#{Participant.count} Participants created"
-
-# puts "Creating chat rooms"
-
-# Chatroom.create!(itinerary: itinerary1)
-# Chatroom.create!(itinerary: itinerary2)
-# # ... create more chat rooms as needed
-
-# puts "#{Chatroom.count} Chat rooms created"
-
-# puts "Creating messages"
-
-# # Sample users and chat rooms
-# users = User.all
-# chatrooms = Chatroom.all
-
-# # Set static created_at and updated_at values
-# created_at = Time.now - (30 * 24 * 60 * 60) # 30 days ago
-# updated_at = Time.now - (15 * 24 * 60 * 60) # 15 days ago
-
-# users.each do |user|
-#   chatrooms.each do |chatroom|
-#     Message.create!(
-#       user: user,
-#       content: "Message from #{user.username}, How's it?",
-#       chatroom: chatroom,
-#       created_at: created_at,
-#       updated_at: updated_at
-#     )
-#   end
-# end
-
-# puts "#{Message.count} Messages created"

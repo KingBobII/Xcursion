@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2023_12_06_105254) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,18 +52,32 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_105254) do
 
   create_table "excursions", force: :cascade do |t|
     t.string "title"
+    t.text "description"
     t.string "image"
     t.string "city"
     t.integer "capacity"
-    t.integer "length"
-    t.text "description"
+    t.integer "duration"
     t.string "category"
+    t.string "setting"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "average_rating"
     t.text "review"
     t.index ["user_id"], name: "index_excursions_on_user_id"
+  end
+
+  create_table "inspirations", force: :cascade do |t|
+    t.string "city"
+    t.integer "capacity"
+    t.integer "duration"
+    t.string "category"
+    t.string "setting"
+    t.integer "budget"
+    t.string "interests"
+    t.text "requirements"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "itineraries", force: :cascade do |t|

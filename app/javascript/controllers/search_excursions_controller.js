@@ -38,8 +38,8 @@ export default class extends Controller {
     if (data.length > 0) {
       data.forEach((excursion) => {
         const imageTag = excursion.image_key
-          ? `<img src="${cloudinaryImageUrl.replace('your_image_key', excursion.image_key)}" class="excursion-image" alt="Image of an Excursion">`
-          : '<img src="https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png" class="excursion-image" alt="Default Image">';
+        ? `<img src="${cloudinaryImageUrl.replace('your_image_key', excursion.image_key)}" class="excursion-image" alt="Image of an Excursion">`
+        : '<img src="https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png" class="excursion-image" alt="Default Image">';
 
         const excursionCard = `
           <a href="/excursions/${excursion.id}" class="excursion-link">
