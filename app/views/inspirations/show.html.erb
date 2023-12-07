@@ -1,0 +1,25 @@
+<div class="container-sugggestions">
+  <div class="container suggestions-info">
+    <h1>AI Suggested Excursions</h1>
+    <% @suggestions_array.each do |suggestion| %>
+      <ul>
+      <li><%= suggestion  %></li>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="container new-excursion">
+    <h1>Transform AI Inspiration Into Your Excursion</h1>
+    <%= simple_form_for @excursion do |form| %>
+      <%= form.input :title, placeholder: 'Enter the title' %>
+      <%#= form.input :photo, as: :file , placeholder: 'Choose an image' %>
+      <%= form.input :city, placeholder: 'Enter the city' %>
+      <%= form.input :capacity, placeholder: 'Enter the capacity' %>
+      <%= form.input :length, placeholder: 'Enter the length' %>
+      <%= form.input :description, placeholder: 'Enter the description' %>
+      <%= form.input :category, collection: ['Family', 'Friends', 'Business', 'Romantic'], prompt: 'Select a category', placeholder: 'Select a category' %>
+      <%= form.button :submit %>
+    <% end %>
+  </div>
+
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_05_135911) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_06_105317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_135911) do
     t.integer "average_rating"
     t.text "review"
     t.index ["user_id"], name: "index_excursions_on_user_id"
+  end
+
+  create_table "inspirations", force: :cascade do |t|
+    t.integer "capacity"
+    t.integer "budget"
+    t.string "setting"
+    t.string "location"
+    t.string "interests"
+    t.string "duration"
+    t.text "requirements"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
