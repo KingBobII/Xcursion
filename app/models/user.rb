@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :participants, dependent: :destroy
   # has_many :itineraries, through: :participants
   has_many :itineraries
-  has_many :votes, dependent: :destroy
+  has_many :votes
   has_many :messages, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
