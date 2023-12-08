@@ -6,7 +6,7 @@
     <div class="itinerary-date">
       <p><i class="fa-solid fa-calendar-days"></i></p>
       <div class="itinerary-date-dates">
-        <p><%=  @itinerary.start_time.strftime("%A, %e]th")%> -</p>
+        <p><%=  @itinerary.start_time.strftime("%A, %eth")%> -</p>
         <p><%=  @itinerary.end_time.strftime("%A, %eth %b")%></p>
       </div>
     </div>
@@ -30,29 +30,29 @@
 
 <%# Itinerary Crew %>
 
-<div class="itinerary-participants">
-  <h3>Your Crew</h3>
-  <div class="itinerary-participants-confirmed">
-    <% if @itinerary.participants.exists? %>
-      <% @itinerary.participants.each do |participant| %>
-        <p><i class="fa-solid fa-check"></i> <%= participant.user.username %></p>
+  <div class="itinerary-participants">
+    <h3>Your Crew</h3>
+    <div class="itinerary-participants-confirmed">
+      <% if @itinerary.participants.exists? %>
+        <% @itinerary.participants.each do |participant| %>
+          <p><i class="fa-solid fa-check"></i> <%= participant.user.username %></p>
+        <% end %>
+      <% else %>
+        <p>You're going this one solo</p>
       <% end %>
-    <% else %>
-      <p>You're going this one solo</p>
-    <% end %>
-  </div>
+    </div>
 
-  <div class="itinerary-participants-add">
-    <p><strong>Who Wants To Join?</strong></p>
-    <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
-      <% @available_users.each do |user| %>
-        <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
-        <%= user.username %><br>
+    <div class="itinerary-participants-add">
+      <p><strong>Who Wants To Join?</strong></p>
+      <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
+        <% @available_users.each do |user| %>
+          <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
+          <%= user.username %><br>
+        <% end %>
+        <%= f.button :submit, "+ to Crew", class: "btn-green" %>
       <% end %>
-      <%= f.button :submit, "+ to Crew", class: "btn-green" %>
-    <% end %>
+    </div>
   </div>
-</div>
 
 <%# Itinerary Chatroom %>
 
