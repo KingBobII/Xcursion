@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background-color: $green;
+  background-color: $navbar;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,11 +12,35 @@
 }
 
 .nav-link{
-  color: white;
-  font-weight: bolder;
+  // color: white;
+  // font-weight: bolder;
+  font-size: larger;
+}
+
+.dropdown-custom-color {
+  background-color: transparent;
+  border: none;
+
+  li {
+    background-color: rgb(186, 186, 186);
+    // padding: 0.5rem;
+    border-radius: 3px;
+    margin: 5px;
+  }
+
+  li:hover {
+    background-color: #FEC65B;
+    color: black !important;
+    margin: 5px;
+  }
+
+  a:hover {
+    color: black !important;
+    background-color: #FEC65B;
+  }
 }
 
 .dropdown-custom-color .dropdown-item {
-  background-color: rgb(85, 105, 118);
+  // background-color: rgb(85, 105, 118);
   color: white;
 }

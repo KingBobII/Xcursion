@@ -11,12 +11,17 @@
 @import "components/index";
 @import "pages/index";
 
-.body {
+body {
   a {
     text-decoration: none;
     color: black;
   }
-  background-color: #eaeaea;
+  // background-color: #eaeaea;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 100px;
 }
 
 // h1{

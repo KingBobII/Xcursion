@@ -1,23 +1,31 @@
-<div class="container my-4" data-controller="search-excursions">
-  <%= form_with url: excursions_path, method: :get, html: {class: "mb-4", data: {search_excursions_target: "form"}} do |f|%>
+<div class="container main-home mb-5 p-4" data-controller="search-excursions">
+  <%= form_with url: excursions_path, method: :get, html: { class: "mb-4 pretty-searchbar", data: { search_excursions_target: "form" } } do |f| %>
+  <div class="input-group">
     <%= f.text_field :query,
-                      placeholder: 'Search for excursions...',
-                      class: "form-control",
-                      value: params[:query],
-                      data: {search_excursions_target: "input",
-                            action: "keyup->search-excursions#update"}
-                      %>
-    <%= f.submit 'Search', class: "btn btn-primary mt-2", data: { action: "submit->search-excursions#search" } %>
-  <% end %>
+                    placeholder: 'Search for excursions...',
+                    class: "form-control",
+                    value: params[:query],
+                    data: { search_excursions_target: "input",
+                            action: "keyup->search-excursions#update" } %>
+    <div class="input-group-append">
+      <%= button_tag(type: 'submit', class: 'btn btn-info', data: { action: 'submit->search-excursions#search' }) do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 
 
   <script>
     const cloudinaryImageUrl = "<%= cl_image_path('your_image_key', { class: 'excursion-image', alt: 'Image of an Excursion', crop: :fill }) %>";
   </script>
 
- <%= javascript_include_tag 'controllers/search_excursions_controller' %>
- <h1>Excursions</h1>
+  <%= javascript_include_tag 'controllers/search_excursions_controller' %>
 
+  <div class="index-heading-container d-flex align-items-center justify-content-center my-5">
+    <h1>EXCURSIONS</h1>
+  </div>
 
   <div class="grid-container" data-search-excursions-target="list">
 
@@ -34,8 +42,9 @@
             <% end %>
           </div>
           <div class="excursion-info">
-            <p><strong><%= excursion[:category] %></strong>,</p><p><%= excursion[:description] %></p>
-             <p> <i><%= excursion[:city] %></i> </p>
+            <p class="excursion-category"><strong><%= excursion[:category] %></strong></p>
+            <p><%= excursion[:description] %></p>
+            <p><i class="fa-solid fa-location-dot"></i>     <i><%= excursion[:city] %></i></p>
           </div>
         </div>
       <% end %>

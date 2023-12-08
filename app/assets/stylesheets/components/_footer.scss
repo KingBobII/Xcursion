@@ -1,11 +1,24 @@
 .footer {
-  background: $green;
+  background: $footer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0px 50px;
   color: $blue;
+  margin-top: auto;
+
+  a {
+    color: #FEC65B;
+    margin-left: 0.5rem;
+    font-size: larger;
+  }
+
+  p {
+    margin: 0;
+    color: #FEC65B;
+    font-weight: normal;
+  }
 }
 .footer-links {
   display: flex;

@@ -46,11 +46,15 @@ export default class extends Controller {
         const excursionCard = `
           <a href="/excursions/${excursion.id}" class="excursion-link">
             <div class="excursion-card item">
-              <h3 class="excursion-title">${excursion.title}</h3>
-              ${imageTag}
-              <p><strong>City:</strong> ${excursion.city}</p>
-              <p><strong>Category:</strong> ${excursion.category}</p>
-              <p><strong>Description:</strong> ${excursion.description}</p>
+              <h3 class="excursion-title card-title" style="height: 2.5rem; overflow: hidden;">${excursion.title}</h3>
+              <div class="excursion-image">
+                ${imageTag}
+              </div>
+              <div class="excursion-info">
+                <p class="excursion-category"><strong>${excursion.category}</strong></p>
+                <p>${excursion.description}</p>
+                <p><i class="fa solid fa-location-dot"></i>     <i>${excursion.city}</i></p>
+              </div>
             </div>
           </a>
         `;

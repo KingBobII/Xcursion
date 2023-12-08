@@ -1,26 +1,47 @@
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
   border-radius: 10px;
   text-align: center;
+
+  a {
+    text-decoration: none;
+  }
 }
+
+.index-heading-container {
+  h1 {
+    margin: 0;
+  }
+}
+
+.main-home {
+  // background-color: $home-card !important;
+  // margin-top: 100px !important;
+
+}
+
 .excursion-card {
-  background-color: #f8f8f8; /* Add a light background color */
-  padding: 10px;
+  background-color: $home-card; /* Add a light background color */
+  padding: 1.5rem;
   border-radius: 8px;
   transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
- // box-shadow: 1px 1px 10px rgb(85, 105, 118);;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   max-height: 900px;
+  border: 2px solid #FEC65B;
   // min-height: 500px;
+  p {
+    margin: 0;
+  }
+}
 
 .excursion-card:hover{
-  box-shadow: 1px 1px 10px rgb(85, 105, 118);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transform: scale(1.02); /* Enlarge the card on hover */
+
 }
 
-.excursion-card:hover {
-  transform: scale(1.05); /* Enlarge the card on hover */
-}
 .excursion-image {
   object-fit: cover;
   border-radius: 8px;
@@ -28,14 +49,27 @@
   height: 150px; /* Adjust the height as needed */
   margin-bottom: 8px; /* Add some space between the image and title */
 }
+
 .excursion-title {
   font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 1.2rem;
+  // margin-bottom: 8px;
+
 }
-.excursion-info{
+
+.excursion-info {
   height: 170px;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  // border: 1px solid red;
+}
+
+.excursion-category {
+  // font-size: 0.8rem;
+  // font-weight: bold;
+  color: $navbar;
 }
 
 .excursion-info::-webkit-scrollbar {
@@ -45,6 +79,7 @@
 // Blending the text in the search bar with the background
 .pretty-searchbar input[type="text"] {
   color: transparent; // Hides the text
+  background-color: white;
 
   &:focus {
     color: #5A5766; // Changes text to #5A5766 when selected
@@ -100,5 +135,4 @@
   outline: none;
   box-shadow: none;
   border-color: #5A5766;
-}
 }

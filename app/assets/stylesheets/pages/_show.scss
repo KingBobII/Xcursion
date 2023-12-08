@@ -1,16 +1,16 @@
-.excursion-container {
+.excursion-show-container {
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 700px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  width: 900px;
 }
 
-.excursion-container:hover{
-  box-shadow: 1px 1px 10px rgb(85, 105, 118);
-}
+// .excursion-show-container:hover{
+//   box-shadow: 1px 1px 10px rgb(85, 105, 118);
+// }
 
-.excursion-container h1 {
+.excursion-show-container h1 {
   text-align: center;
 }
 
@@ -21,6 +21,7 @@
 
 .reviews {
   margin-top: 20px;
+  border: 1px solid red;
 }
 
 .btn {
@@ -71,10 +72,10 @@ justify-content: left;
 }
 
 .container {
-  background-color: #f8f9fa;
+  // background-color: #f8f9fa;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .suggestions-info {
