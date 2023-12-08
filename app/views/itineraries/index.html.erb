@@ -6,20 +6,21 @@
   <div class="row">
     <% @itineraries.each do |itinerary| %>
       <div class="col-md-6 mb-4">
-        <div class="itinerary-index-card">
-          <div class="itinerary-date-title">
-            <h2><%= itinerary.title %></h2>
-            <div class="itinerary-date">
-              <p><i class="fa-solid fa-calendar-days"></i></p>
-              <div class="itinerary-date-dates">
-                <p><%=  itinerary.start_time.strftime("%A, %eth")%> -</p>
-                <p><%=  itinerary.end_time.strftime("%A, %eth %b")%></p>
+        <%= link_to itineraries_path(itinerary) do %>
+          <div class="itinerary-index-card">
+            <div class="itinerary-date-title">
+              <h2><%= itinerary.title %></h2>
+              <div class="itinerary-date">
+                <p><i class="fa-solid fa-calendar-days"></i></p>
+                <div class="itinerary-date-dates">
+                  <p><%=  itinerary.start_time.strftime("%A, %eth")%> -</p>
+                  <p><%=  itinerary.end_time.strftime("%A, %eth %b")%></p>
+                </div>
               </div>
             </div>
+            <p class="card-text"><%= itinerary.description %></p>
           </div>
-
-          <p class="card-text"><%= itinerary.description %></p>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>
