@@ -44,7 +44,8 @@ user3 = User.create!(
   username: 'Jesse',
   password: 'password',
   email: 'april@gmail.com',
-  bio: 'Passionate about exploring the world and creating unforgettable memories.'
+  bio: 'Passionate about exploring the world and creating unforgettable memories.',
+  image: 'https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
 )
 
 user4 = User.create!(
@@ -62,7 +63,7 @@ user5 = User.create!(
   image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
 )
 
- puts "creating excursions"
+puts "creating excursions"
 
 # Define a method to create excursions
 def create_excursion(title, city, capacity, category, setting, duration, description, user)

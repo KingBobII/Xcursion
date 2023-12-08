@@ -7,26 +7,45 @@
       <h1><%= @excursion.title %></h1>
       <p><strong><i class="fa-solid fa-hashtag"></i></strong> <%= @excursion.description %></p>
       <p><strong><i class="fa-solid fa-location-dot"></i></strong> <%= @excursion.city %></p>
-      <div class="btn-group show-buttons" role="group" aria-label="Upvote and Downvote buttons">
-        <%= button_to like_excursion_path(@excursion), method: :put, class: "btn btn-success text-white", remote: true do %>
-          <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-up") %> <%= number_to_human(@excursion.get_upvotes.size) %>
-        <% end %>
-        <%= button_to dislike_excursion_path(@excursion), method: :put, class: "btn btn-danger text-white", remote: true do %>
-          <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-down") %> <%= number_to_human(@excursion.get_downvotes.size) %>
-        <% end %>
-        <div class="dropdown">
-          <button id="info-button" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-plus"></i>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <% if current_user == @excursion.user %>
-              <li><%= link_to 'Edit', edit_excursion_path(@excursion), class: "dropdown-item" %></li>
-              <li><%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "dropdown-item text-danger" %></li>
-            <% end %>
-              <li><%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "dropdown-item" %></li>
-          </ul>
+
+      <div class="show-buttons-and-add-to-itinerary">
+        <div class="btn-group show-buttons" role="group" aria-label="Upvote and Downvote buttons">
+          <%= button_to like_excursion_path(@excursion), method: :put, class: "btn btn-success text-white", remote: true do %>
+            <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-up") %> <%= number_to_human(@excursion.get_upvotes.size) %>
+          <% end %>
+          <%= button_to dislike_excursion_path(@excursion), method: :put, class: "btn btn-danger text-white", remote: true do %>
+            <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-down") %> <%= number_to_human(@excursion.get_downvotes.size) %>
+          <% end %>
+          <div class="dropdown">
+            <button id="info-button" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% if current_user == @excursion.user %>
+                <li><%= link_to 'Edit', edit_excursion_path(@excursion), class: "dropdown-item" %></li>
+                <li><%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "dropdown-item text-danger" %></li>
+              <% end %>
+                <li><%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "dropdown-item" %></li>
+            </ul>
+          </div>
+        </div>
+        <div class="add-to-itin">
+          <%= simple_form_for [@excursion, @itinerary_excursion], html: { style: 'display: flex; align-items: center;' } do |f| %>
+            <div class="input-group">
+              <%= f.association :itinerary,
+                              collection: Itinerary.all,
+                              label: false,
+                              prompt: "Add to itinerary",
+                              input_html: { class: 'form-control', placeholder: 'Select an itinerary' } %>
+              <div class="input-group-append">
+                <%= f.button :submit, "+", class: 'btn btn-primary', style: 'height: 100%;' %>
+              </div>
+            </div>
+            <%= f.hidden_field :excursion_id, value: @excursion.id %>
+          <% end %>
         </div>
       </div>
+
     </div>
   </div>
   <hr>
@@ -57,14 +76,6 @@
             </div>
           <% end %>
         </div>
-    <hr>
- <div>
-      <%= simple_form_for [@excursion, @itinerary_excursion] do |f| %>
-        <%= f.association :itinerary, collection: Itinerary.all %>
-        <%= f.hidden_field :excursion_id, value: @excursion.id %>
-        <%= f.button :submit, "Add to Itinerary" %>
-      <% end %>
-</div>
         <% end %>
       <% else %>
         <p>No reviews yet. Be the first to add one!</p>
