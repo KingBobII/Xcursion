@@ -10,8 +10,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "pages/show";
-body {
+
+.body {
   a {
     text-decoration: none;
     color: black;
@@ -19,6 +19,6 @@ body {
   background-color: #eaeaea;
 }
 
-h1{
-  
-}
+// h1{
+
+// }

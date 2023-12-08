@@ -1,10 +1,12 @@
-<div class="container-sugggestions">
+<div class="container-suggestions">
   <div class="container suggestions-info">
     <h1>AI Suggested Excursions</h1>
     <% @suggestions_array.each do |suggestion| %>
-      <ul>
-      <li><%= suggestion  %></li>
-      </ul>
+      <div class="ai-suggestions">
+          <ul>
+          <li><%= suggestion  %></li>
+          </ul>
+      </div>
     <% end %>
   </div>
 
