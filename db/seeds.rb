@@ -62,6 +62,102 @@ user5 = User.create!(
   bio: 'Passionate about exploring the world and creating unforgettable memories.',
   image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
 )
+user6 = User.create!(
+  username: 'Emma',
+  password: 'password',
+  email: 'emma@example.com',
+  bio: 'Adventurous spirit with a love for nature and photography.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user6 = User.create!(
+  username: 'Alex',
+  password: 'password',
+  email: 'alex@example.com',
+  bio: 'Tech enthusiast and aspiring entrepreneur.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user7 = User.create!(
+  username: 'Sophie',
+  password: 'password',
+  email: 'sophie@example.com',
+  bio: 'Foodie and travel lover on a mission to taste flavors from around the globe.',
+  image: 'URL for Sophie\'s image'
+)
+  user6 = User.create!(
+  username: 'Chris',
+  password: 'password',
+  email: 'chris@example.com',
+  bio: 'Fitness freak and outdoor enthusiast.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user16 = User.create!(
+  username: 'Olivia',
+  password: 'password',
+  email: 'olivia@example.com',
+  bio: 'Art and culture lover with a passion for creativity.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user7 = User.create!(
+  username: 'Daniel',
+  password: 'password',
+  email: 'daniel@example.com',
+  bio: 'Bookworm and aspiring writer.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user8 = User.create!(
+  username: 'Ava',
+  password: 'password',
+  email: 'ava@example.com',
+  bio: 'Music lover and concert enthusiast.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+user9 = User.create!(
+  username: 'William',
+  password: 'password',
+  email: 'william@example.com',
+  bio: 'Tech geek and gaming aficionado.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+
+user10 = User.create!(
+  username: 'Mia',
+  password: 'password',
+  email: 'mia@example.com',
+  bio: 'Fashionista and aspiring model.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+
+user11 = User.create!(
+  username: 'Ethan',
+  password: 'password',
+  email: 'ethan@example.com',
+  bio: 'Culinary enthusiast and aspiring chef.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+
+user12 = User.create!(
+  username: 'Avery',
+  password: 'password',
+  email: 'avery@example.com',
+  bio: 'Animal lover and wildlife conservation advocate.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+
+user13 = User.create!(
+  username: 'Oliver',
+  password: 'password',
+  email: 'oliver@example.com',
+  bio: 'Artificial Intelligence researcher and technology futurist.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
+
+user14 = User.create!(
+  username: 'Sophia',
+  password: 'password',
+  email: 'sophia@example.com',
+  bio: 'Yoga practitioner and mindfulness advocate.',
+  image: 'https://cdn-icons-png.flaticon.com/128/706/706807.png'
+)
 
 puts "creating excursions"
 
@@ -450,24 +546,20 @@ create_excursion(
 
 puts "#{Excursion.count} Excursions created"
 
-puts "Creating upvotes"
-100.times do
-  user = User.all.sample
-  30.times do
-    excursion = Excursion.all.sample
-    excursion.upvote_from(user)
-  end
-end
-# puts "#{excursion.get_upvotes.size} upvotes added to #{excursion.title}"
+scenic_helicopter_tour = Excursion.find_by(title: 'Scenic Helicopter Tour')
 
-puts "Creating downvotes"
+# Add 143 downvotes to 'Scenic Helicopter Tour'
+143.times do
+  user = User.all.sample
+  scenic_helicopter_tour.downvote_from(user)
+end
+
+# Add 10 more downvotes to 'Scenic Helicopter Tour'
 10.times do
   user = User.all.sample
-  5.times do
-    excursion = Excursion.all.sample
-    excursion.downvote_from(user)
-  end
+  scenic_helicopter_tour.downvote_from(user)
 end
+
 # puts "#{excursion.get_downvotes.size} downvotes added to #{excursion.title}"
 puts "#{Excursion.first.title} has #{Excursion.first.get_downvotes.size} downvotes"
 puts "#{Excursion.first.title} has #{Excursion.first.get_upvotes.size} upvotes"
