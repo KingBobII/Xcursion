@@ -1,27 +1,47 @@
 .excursion-show-container {
   background-color: #f8f9fa;
-  padding: 20px;
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  width: 900px;
+  width: 60rem;
+  // border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
 }
 
-// .excursion-show-container:hover{
-//   box-shadow: 1px 1px 10px rgb(85, 105, 118);
-// }
-
-.excursion-show-container h1 {
-  text-align: center;
+.excursion-show-top {
+  // border: 2px solid rgb(255, 121, 121);
+  display: flex;
+  margin-bottom: 1.5rem;
 }
 
+.excursion-show-image {
+  // border: 1px solid rgb(43, 0, 255);
+  width: 50%;
+  // border: 2px solid blue;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+  }
+}
 
 .excursion-infos {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .reviews {
-  margin-top: 20px;
-  border: 1px solid red;
+  margin-top: 1.5rem;
+  // border: 1px solid red;
+}
+
+#info-button {
+  color: white;
 }
 
 .btn {
@@ -53,29 +73,13 @@
 padding: 10px;
 justify-content: left;
 }
-.container-rating {
-  display: flex; /* This sets the container as a flex container */
-  justify-content: left; /* Distributes items evenly */
-}
-// .container-suggestions{
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   grid-gap: 1rem;
-//   border-radius: 10px;
-// }
+
 .container-suggestions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   border-radius: 10px;
   margin: 18px
-}
-
-.container {
-  // background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 8px;
-  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .suggestions-info {
@@ -101,4 +105,9 @@ li {
 
 .ai-suggestions {
   border-bottom: 5px solid darkgray;
+}
+
+
+.new-review {
+  width: 50%;
 }

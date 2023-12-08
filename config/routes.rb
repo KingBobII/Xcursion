@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :reviews, only: [:destroy]
+
   # Upvote and Downvote on Excursion
   resources :excursions do
     member do

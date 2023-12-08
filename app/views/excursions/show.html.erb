@@ -1,50 +1,65 @@
-<div class="container my-4 excursion-show-container">
-    <div class="excursion-infos">
-        <h1><%= @excursion.title %></h1>
-        <div class="excursion-image">
-            <%= @excursion.image.present? ? cl_image_tag(@excursion.image.key, class: "excursion-image", alt: "Image of an Excursion", crop: :fill) : image_tag("https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image") %>
-        </div>
-        <p><strong><i class="fa-solid fa-hashtag"></i></strong> <%= @excursion.description %></p>
-        <p><strong><i class="fa-solid fa-location-dot"></i></strong> <%= @excursion.city %></p>
-        <div class="btn-group" role="group" aria-label="Upvote and Downvote buttons">
-            <%= button_to like_excursion_path(@excursion), method: :put, class: "btn btn-success text-white", remote: true do %>
-                <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-up") %> <%= number_to_human(@excursion.get_upvotes.size) %>
-            <% end %>
-            <%= button_to dislike_excursion_path(@excursion), method: :put, class: "btn btn-danger text-white", remote: true do %>
-                <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-down") %> <%= number_to_human(@excursion.get_downvotes.size) %>
-            <% end %>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <% if current_user == @excursion.user %>
-                        <li><%= link_to 'Edit', edit_excursion_path(@excursion), class: "dropdown-item" %></li>
-                        <li><%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "dropdown-item text-danger" %></li>
-                    <% end %>
-                    <li><%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "dropdown-item" %></li>
-                </ul>
-            </div>
-        </div>
+<div class="container my-5 excursion-show-container">
+  <div class="excursion-show-top">
+    <div class="excursion-show-image">
+        <%= @excursion.image.present? ? cl_image_tag(@excursion.image.key, alt: "Image of an Excursion", crop: :fill) : image_tag("https://www.xcursionrisk.com/uploads/1/0/4/5/10451400/xcursion-green-dot.png", class: "excursion-image") %>
     </div>
-    <hr>
-    <div class="reviews">
-        <% if @excursion.reviews.present? %>
-            <h2>Latest Reviews</h2>
-            <% @excursion.reviews.each do |review| %>
-                <p><strong><i class="fa-solid fa-user"></i></strong> <%= review.user.username %></p>
-                <p><strong><i class="fa-solid fa-comment"></i></strong> <%= review.content %></p>
-                <div class="container-rating">
-                <p><strong>Rating:</strong></p><p><%= star_rating(review.user_rating) %></p>
-                </div>
-                <% if current_user == review.user %>
-                    <%= link_to(edit_excursion_review_path(@excursion), class: "btn btn-secondary") do %>
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    <% end %>
-                <% end %>
-            <% end %>
-        <% else %>
-            <p>No reviews yet. Be the first to add one!</p>
+    <div class="excursion-infos px-4">
+      <h1><%= @excursion.title %></h1>
+      <p><strong><i class="fa-solid fa-hashtag"></i></strong> <%= @excursion.description %></p>
+      <p><strong><i class="fa-solid fa-location-dot"></i></strong> <%= @excursion.city %></p>
+      <div class="btn-group show-buttons" role="group" aria-label="Upvote and Downvote buttons">
+        <%= button_to like_excursion_path(@excursion), method: :put, class: "btn btn-success text-white", remote: true do %>
+          <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-up") %> <%= number_to_human(@excursion.get_upvotes.size) %>
         <% end %>
+        <%= button_to dislike_excursion_path(@excursion), method: :put, class: "btn btn-danger text-white", remote: true do %>
+          <%= content_tag(:i, nil, class: "fa-solid fa-thumbs-down") %> <%= number_to_human(@excursion.get_downvotes.size) %>
+        <% end %>
+        <div class="dropdown">
+          <button id="info-button" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if current_user == @excursion.user %>
+              <li><%= link_to 'Edit', edit_excursion_path(@excursion), class: "dropdown-item" %></li>
+              <li><%= link_to "Delete this excursion", excursion_path(@excursion), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "dropdown-item text-danger" %></li>
+            <% end %>
+              <li><%= link_to 'Add a review', new_excursion_review_path(@excursion), class: "dropdown-item" %></li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
+  <hr>
+  <div class="reviews">
+    <% if @excursion.reviews.present? %>
+      <h3>LATEST REVIEWS</h3>
+        <% @excursion.reviews.each do |review| %>
+        <div class="show-review-card mt-3">
+          <div class="review-flex">
+            <div class="user-and-image d-flex align-items-center">
+              <%= image_tag(current_user.image, width: 40, height: 40) %>
+              <h5 class="mx-2"><%= review.user.username %></h5>
+            </div>
+            <div class="container-rating">
+              <h5><strong><%= star_rating(review.user_rating) %></strong></h5>
+            </div>
+          </div>
+          <hr>
+          <p><em></i>"<%= review.content %>"</em></p>
+          <% if current_user == review.user %>
+            <div class="edit-delete-review d-flex justify-content-end">
+              <%= link_to edit_excursion_review_path(@excursion, review) do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+              <% end %>
+              <%= link_to excursion_review_path(@excursion, review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                <i class="fa-solid fa-trash-can"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+      <% else %>
+        <p>No reviews yet. Be the first to add one!</p>
+      <% end %>
+  </div>
 </div>
