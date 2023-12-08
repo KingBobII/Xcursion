@@ -34,6 +34,8 @@ class ExcursionsController < ApplicationController
 
   def show
     @excursion = Excursion.find(params[:id])
+    # @my_itineraries = current_user.itineraries
+    # @itinerary =
   end
 
   def new
@@ -78,9 +80,9 @@ class ExcursionsController < ApplicationController
       @excursion.liked_by current_user
       redirect_to @excursion
     end
-end
+  end
 
-def downvote
+  def downvote
     unless user_signed_in?
       redirect_to new_user_session_path
     else
@@ -88,7 +90,7 @@ def downvote
       @excursion.downvote_from current_user
       redirect_to @excursion
     end
-end
+  end
 
   private
 

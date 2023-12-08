@@ -27,7 +27,7 @@ puts "creating users"
 user1 = User.create!(
   username: 'Jack',
   password: 'password',
-  email: 'jack@example.com',
+  email: 'jack@gmail.com',
   bio: 'Adventure seeker and nature lover.',
   image: 'https://cdn-icons-png.flaticon.com/128/4333/4333609.png'
 )
@@ -35,15 +35,15 @@ user1 = User.create!(
 user2 = User.create!(
   username: 'Tony',
   password: 'password',
-  email: 'tony@example.com',
+  email: 'tony@gmail.com',
   image: 'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/girl_avatar_child_kid-128.png',
   bio: 'Travel enthusiast and foodie.'
 )
 
 user3 = User.create!(
-  username: 'April',
+  username: 'Jesse',
   password: 'password',
-  email: 'april@example.com',
+  email: 'april@gmail.com',
   bio: 'Passionate about exploring the world and creating unforgettable memories.'
 )
 
@@ -447,12 +447,33 @@ create_excursion(
   User.all.sample
 )
 
-# Add more excursions following the same pattern
-
-# Continue the pattern for the remaining excursions (excursion3 to excursion15)
-# ...
-
 puts "#{Excursion.count} Excursions created"
+
+puts "Creating upvotes"
+100.times do
+  user = User.all.sample
+  30.times do
+    excursion = Excursion.all.sample
+    excursion.upvote_from(user)
+  end
+end
+# puts "#{excursion.get_upvotes.size} upvotes added to #{excursion.title}"
+
+puts "Creating downvotes"
+10.times do
+  user = User.all.sample
+  5.times do
+    excursion = Excursion.all.sample
+    excursion.downvote_from(user)
+  end
+end
+# puts "#{excursion.get_downvotes.size} downvotes added to #{excursion.title}"
+puts "#{Excursion.first.title} has #{Excursion.first.get_downvotes.size} downvotes"
+puts "#{Excursion.first.title} has #{Excursion.first.get_upvotes.size} upvotes"
+puts "#{Excursion.last.title} has #{Excursion.last.get_downvotes.size} downvotes"
+puts "#{Excursion.last.title} has #{Excursion.last.get_upvotes.size} upvotes"
+puts "#{Excursion.all.sample.title} has #{Excursion.all.sample.get_downvotes.size} downvotes"
+puts "#{Excursion.all.sample.title} has #{Excursion.all.sample.get_upvotes.size} upvotes"
 
 puts "creating itineraries"
 
@@ -622,8 +643,8 @@ itinerary21 = Itinerary.create!(
   start_time: Time.now + 21.days,
   end_time: Time.now + 21.days + 4.hours,
   description: 'Nightlife adventure on Long Street, explore bars, clubs, and live music venues.',
-  title: 'Long Street Night Out',
-  user: User.all.sample
+  title: 'Weekend In Town',
+  user: user1
 )
 
 itinerary22 = Itinerary.create!(
@@ -692,6 +713,18 @@ itinerary29 = Itinerary.create!(
 
 puts "#{Itinerary.count} itineraries created"
 
+ItineraryExcursion.create(
+  excursion_id: Excursion.find_by(title: 'Table Mountain Hike').id,
+  itinerary_id: Itinerary.find_by(title: 'Weekend In Town').id
+)
+ItineraryExcursion.create(
+  excursion_id: Excursion.find_by(title: 'Cape Town Jazz Safari Experience').id,
+  itinerary_id: Itinerary.find_by(title: 'Weekend In Town').id
+)
+ItineraryExcursion.create(
+  excursion_id: Excursion.find_by(title: 'Cape Town Street Art Exploration').id,
+  itinerary_id: Itinerary.find_by(title: 'Weekend In Town').id
+)
 puts "creating reviews"
 # Create Reviews
 review_data = [
@@ -701,7 +734,10 @@ review_data = [
   { content: 'Explore the vibrant Bo-Kaap neighborhood, savoring the rich flavors of Cape Malay cuisine. Culinary Delights in Bo-Kaap is a gastronomic journey.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Culinary Delights in Bo-Kaap').id },
   { content: 'Immerse yourself in the eclectic art scene of Woodstock with a guided walking tour. Art Walk through Woodstock is a creative exploration.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Art Walk through Woodstock').id },
   { content: 'Indulge in a day of wine tasting amidst the picturesque vineyards of Stellenbosch. Wine Tasting in Stellenbosch offers exceptional wines.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Wine Tasting in Stellenbosch').id },
-  { content: 'Soar above Cape Towns landmarks on a thrilling helicopter tour with breathtaking views. Scenic Helicopter Tour is an aerial adventure.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
+  { content: 'Embark on a disappointing helicopter tour over Cape Towns landmarks. The views were underwhelming, and the experience fell far short of expectations. Scenic Helicopter Tour was a regrettable aerial adventure.', user_rating: 1, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
+  { content: 'So-called Scenic Helicopter Tour provided a lackluster journey above Cape Town. The "breathtaking views" were nowhere to be found, and the entire experience was a letdown. Save your money for a more enjoyable activity.', user_rating: 1, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
+  { content: 'Scenic Helicopter Tour was a waste of time and money. The supposedly breathtaking views were obscured, and the entire experience was anything but thrilling. Avoid this overrated aerial adventure and explore other options.', user_rating: 1, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
+  { content: 'The Scenic Helicopter Tour turned out to be a complete disappointment. Instead of a thrilling adventure, it was a mundane ride with subpar views. Dont be fooled by the promises; this aerial tour is not worth the hype.', user_rating: 1, excursion_id: Excursion.find_by(title: 'Scenic Helicopter Tour').id },
   { content: 'Uncover the history of South Africa with a guided tour of Robben Island. Historical Robben Island Visit is an educational journey.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Historical Robben Island Visit').id },
   { content: 'Catch the waves with a surfing lesson at the iconic Muizenberg Beach. Surfing Lesson in Muizenberg is fantastic for beginners.', user_rating: 4, excursion_id: Excursion.find_by(title: 'Surfing Lesson in Muizenberg').id },
   { content: 'Welcome the day with a peaceful sunrise yoga session overlooking Camps Bay. Sunrise Yoga at Camps Bay is a wellness retreat.', user_rating: 5, excursion_id: Excursion.find_by(title: 'Sunrise Yoga at Camps Bay').id },

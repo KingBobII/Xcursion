@@ -6,7 +6,7 @@
   <div class="row">
     <% @itineraries.each do |itinerary| %>
       <div class="col-md-6 mb-4">
-        <%= link_to itineraries_path(itinerary) do %>
+        <%= link_to itinerary_path(itinerary) do %>
           <div class="itinerary-index-card">
             <div class="itinerary-date-title">
               <h2><%= itinerary.title %></h2>
