@@ -56,7 +56,7 @@
         <div class="show-review-card mt-3">
           <div class="review-flex">
             <div class="user-and-image d-flex align-items-center">
-              <%= image_tag(current_user.image, width: 40, height: 40) %>
+              <%= image_tag(current_user.image, width: 40, height: 40, class: "rounded-circle") %>
               <h5 class="mx-2"><%= review.user.username %></h5>
             </div>
             <div class="container-rating">

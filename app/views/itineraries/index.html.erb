@@ -1,39 +1,33 @@
-<h1 class="mt-4 itinerary-page-header text-center">Your Itineraries</h1>
-
 
 <div class="itinerary-page my-4">
-<% if @itineraries.any? %>
-  <div class="row">
-    <% @itineraries.each do |itinerary| %>
-      <div class="col-md-6 mb-4">
-        <%= link_to itinerary_path(itinerary) do %>
-          <div class="itinerary-index-card">
-            <div class="itinerary-date-title">
-              <h2><%= itinerary.title %></h2>
-              <div class="itinerary-date">
-                <p><i class="fa-solid fa-calendar-days"></i></p>
-                <div class="itinerary-date-dates">
-                  <p><%=  itinerary.start_time.strftime("%A, %eth")%> -</p>
-                  <p><%=  itinerary.end_time.strftime("%A, %eth %b")%></p>
+  <h1 class="mb-4 itinerary-page-header text-center">YOUR ITINERARIES</h1>
+  <% if @itineraries.any? %>
+    <div class="row">
+      <% @itineraries.each do |itinerary| %>
+        <div class="col-md-6 mb-4">
+          <%= link_to itinerary_path(itinerary) do %>
+            <div class="itinerary-index-card">
+              <div class="itinerary-date-title">
+                <h2><%= itinerary.title %></h2>
+                <div class="itinerary-date">
+                  <p><i class="fa-solid fa-calendar-days"></i></p>
+                  <div class="itinerary-date-dates">
+                    <p><%=  itinerary.start_time.strftime("%A, %eth")%> -</p>
+                    <p><%=  itinerary.end_time.strftime("%A, %eth %b")%></p>
+                  </div>
                 </div>
               </div>
+              <p class="card-text"><%= itinerary.description %></p>
             </div>
-            <p class="card-text"><%= itinerary.description %></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No itineraries found.</p>
+  <% end %>
+  <div class="d-flex justify-content-end mb-3">
+    <%= link_to 'Create an Itinerary', new_itinerary_path, class: "btn btn-info" %>
   </div>
-<% else %>
-  <p>No itineraries found.</p>
-<% end %>
-<div class="d-flex justify-content-start mb-3">
-  <%= link_to 'Back', root_path, class: "btn btn-info mr-2" %>
-</div>
-<div class="d-flex justify-content-start mb-3">
-<%= link_to 'Create an Itinerary', new_itinerary_path, class: "btn btn-primary" %>
-</div>
-
-
-
+  </div>
 </div>
