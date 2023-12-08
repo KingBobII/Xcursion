@@ -134,3 +134,14 @@ li {
 .new-review {
   width: 50%;
 }
+
+.show-buttons-and-add-to-itinerary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-to-itin {
+  display: flex;
+  align-items: center;
+}
