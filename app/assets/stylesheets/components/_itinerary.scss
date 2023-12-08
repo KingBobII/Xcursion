@@ -1,3 +1,9 @@
+.itin-show-container {
+  // border: 2px solid blue;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .itinerary-date {
   display: flex;
   align-items: center;
@@ -17,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid green;
+  // border: 1px solid green;
 }
 
 .itinerary-date-dates {
@@ -27,7 +33,7 @@
 }
 
 .itinerary-page .itinerary-description {
-  font-style: italic;
+  // font-style: italic;
 }
 
 .itinerary-participants-confirmed {
@@ -39,9 +45,10 @@
 .itinerary-page {
   width: 80%;
   margin: 0 auto;
-  padding: 32px;
+  // padding: 32px;
   border-radius: 8px;
-  border: 1px solid red;
+  // border: 1px s
+  align-content: center;
 }
 
 .itinerary-excursion-cards {
@@ -57,7 +64,7 @@
   margin-bottom: 5px;
   padding: 15px;
   border-radius: 8px;
-  background-color: #D0CFB3;
+  background-color: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   h4 {
@@ -69,7 +76,7 @@
     font-size: 14px;
     margin: 0px;
     opacity: 40%;
-    font-style: italic;
+    // font-style: italic;
   }
 }
 
@@ -110,7 +117,10 @@
     text-align: center;
     margin-bottom: 20px;
   }
+  // border: 2px solid red;
 }
+
+
 
 .itinerary-index-card {
 
@@ -136,7 +146,7 @@
   }
 
   .card-text {
-    font-style: italic;
+    // font-style: italic;
     opacity: 60%;
     font-weight: 400px;
     font-size: 14px;

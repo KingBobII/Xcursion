@@ -1,91 +1,96 @@
-<h1 class="mt-4 itinerary-page-header text-center">Your Itinerary</h1>
+<div class="itin-show-container">
 
-<div class="itinerary-page my-4">
-  <div class="itinerary-date-title">
-    <h2><%= @itinerary.title %></h2>
-    <div class="itinerary-date">
-      <p><i class="fa-solid fa-calendar-days"></i></p>
-      <div class="itinerary-date-dates">
-        <p><%=  @itinerary.start_time.strftime("%A, %eth")%> -</p>
-        <p><%=  @itinerary.end_time.strftime("%A, %eth %b")%></p>
+  <div class="itin-show-header">
+    <h1 class="mt-4 itinerary-page-header text-center"><%= @itinerary.title.upcase %></h1>
+    <p class="itinerary-description text-center"><em><%= @itinerary.description %></em></p>
+  </div>
+
+
+
+  <div class="itinerary-page my-4">
+    <div class="itinerary-date-title">
+      <div class="itinerary-date">
+        <p><i class="fa-solid fa-calendar-days"></i></p>
+        <div class="itinerary-date-dates">
+          <p><%=  @itinerary.start_time.strftime("%A, %eth")%> -</p>
+          <p><%=  @itinerary.end_time.strftime("%A, %eth %b")%></p>
+        </div>
       </div>
     </div>
-  </div>
-  <p class="itinerary-description"><%= @itinerary.description %></p>
-  <p></p>
 
-<%# Itinerary Excursion Section %>
+  <%# Itinerary Excursion Section %>
 
-  <div class="itinerary-excursion-cards">
-    <h3>Excursions</h3>
-    <% @excursions.each do |excursion| %>
-      <%= link_to excursion_path(excursion) do %>
-        <div class="itinerary-excursion-card">
-          <h4><%= excursion.title %></h4>
-          <p><%= excursion.description %></p>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-<%# Itinerary Crew %>
-
-  <div class="itinerary-participants">
-    <h3>Your Crew</h3>
-    <div class="itinerary-participants-confirmed">
-      <% if @itinerary.participants.exists? %>
-        <% @itinerary.participants.each do |participant| %>
-          <p><i class="fa-solid fa-check"></i> <%= participant.user.username %></p>
-        <% end %>
-      <% else %>
-        <p>You're going this one solo</p>
-      <% end %>
-    </div>
-
-    <div class="itinerary-participants-add">
-      <p><strong>Who Wants To Join?</strong></p>
-      <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
-        <% @available_users.each do |user| %>
-          <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
-          <%= user.username %><br>
-        <% end %>
-        <%= f.button :submit, "+ to Crew", class: "btn-green" %>
-      <% end %>
-    </div>
-  </div>
-
-<%# Itinerary Chatroom %>
-
-
-  <div class="itinerary-chatroom-container mt-4">
-    <h3>#chitterchatter</h3>
-    <div class="itinerary-chatroom"
-          data-controller="itinerary-chatroom-subscription"
-          data-itinerary-chatroom-subscription-chatroom-id-value="<%= @itinerary.id %>"
-          data-itinerary-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
-    >
-      <div class="messages mb-2" data-itinerary-chatroom-subscription-target="messages" style="height: 220px; overflow: auto; background-color:rgb(56, 56, 56); border-radius:10px; padding:10px;">
-        <% @itinerary.itinerary_messages.each do |message| %>
-          <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-              <%= render "messages/message", message: message %>
-            </div>
+    <div class="itinerary-excursion-cards">
+      <h3>Excursions</h3>
+      <% @excursions.each do |excursion| %>
+        <%= link_to excursion_path(excursion) do %>
+          <div class="itinerary-excursion-card">
+            <h4><%= excursion.title %></h4>
+            <p><%= excursion.description %></p>
           </div>
         <% end %>
-      </div>
-      <%= simple_form_for [@itinerary, @itinerary_message], html: { data: { action: "turbo:submit-end->itinerary-chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
-        <%= f.input :content, label: false, placeholder: "Type your message...", wrapper_html: {class: "flex-grow-1"} %>
-        <%= f.submit "Send", class: "btn btn-primary mb-3" %>
       <% end %>
     </div>
+
+  <%# Itinerary Crew %>
+
+    <div class="itinerary-participants">
+      <h3>Your Crew</h3>
+      <div class="itinerary-participants-confirmed">
+        <% if @itinerary.participants.exists? %>
+          <% @itinerary.participants.each do |participant| %>
+            <p><i class="fa-solid fa-check"></i> <%= participant.user.username %></p>
+          <% end %>
+        <% else %>
+          <p>You're going this one solo</p>
+        <% end %>
+      </div>
+
+      <div class="itinerary-participants-add">
+        <p><strong>Who Wants To Join?</strong></p>
+        <%= simple_form_for :participant, url: itinerary_participants_path(@itinerary), method: :post do |f| %>
+          <% @available_users.each do |user| %>
+            <%= f.check_box :user_id, { multiple: true }, user.id, nil %>
+            <%= user.username %><br>
+          <% end %>
+          <%= f.button :submit, "+ to Crew", class: "btn-green" %>
+        <% end %>
+      </div>
+    </div>
+
+  <%# Itinerary Chatroom %>
+
+
+    <div class="itinerary-chatroom-container mt-4">
+      <h3># <%= @itinerary.title.upcase%> CHAT</h3>
+      <div class="itinerary-chatroom"
+            data-controller="itinerary-chatroom-subscription"
+            data-itinerary-chatroom-subscription-chatroom-id-value="<%= @itinerary.id %>"
+            data-itinerary-chatroom-subscription-current-user-id-value="<%= current_user.id %>"
+      >
+        <div class="messages mb-2" data-itinerary-chatroom-subscription-target="messages" style="height: 220px; overflow: auto; background-color:rgb(56, 56, 56); border-radius:10px; padding:10px;">
+          <% @itinerary.itinerary_messages.each do |message| %>
+            <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+              <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+                <%= render "messages/message", message: message %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <%= simple_form_for [@itinerary, @itinerary_message], html: { data: { action: "turbo:submit-end->itinerary-chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
+          <%= f.input :content, label: false, placeholder: "Type your message...", wrapper_html: {class: "flex-grow-1"} %>
+          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+        <% end %>
+      </div>
+    </div>
+
+  <%# Itinerary Controls %>
+
+    <div class="itinerary-controls">
+      <%= link_to 'Back', itineraries_path,class: "btn btn-info" %>
+      <%= link_to 'Edit', edit_itinerary_path(@itinerary), class: "btn btn-primary" %>
+      <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    </div>
+
   </div>
-
-<%# Itinerary Controls %>
-
-  <div class="itinerary-controls">
-    <%= link_to 'Back', itineraries_path,class: "btn btn-info" %>
-    <%= link_to 'Edit', edit_itinerary_path(@itinerary), class: "btn btn-primary" %>
-    <%= button_to "Delete this itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-  </div>
-
 </div>

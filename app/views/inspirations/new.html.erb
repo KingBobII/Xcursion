@@ -1,5 +1,5 @@
-<div class="container my-4">
-  <h1>Generate AI Suggested Excursions:</h1>
+<div class="container my-4 ai-form">
+  <h1 class="text-center my-4">GENERATE AI EXCURSION SUGGESTIONS</h1>
 
   <%= simple_form_for(@inspiration, url: inspirations_path) do |f| %>
     <%= f.input :city, label: "Destination or City", placeholder: "e.g., Paris, New York" %>
@@ -17,6 +17,6 @@
     <%= f.input :requirements, label: "Special Requirements or Preferences",
                                 placeholder: "Any specific needs or preferences?"%>
 
-    <%= f.submit "Create", class: "btn btn-primary mb-3" %>
+    <%= f.submit "Generate with AI", class: "btn btn-info mb-3" %>
   <% end %>
 </div>
