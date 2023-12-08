@@ -1,11 +1,11 @@
 .footer {
-  background: rgb(85, 105, 118);
+  background: $green;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: $blue;
 }
 .footer-links {
   display: flex;
