@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :itinerary_excursions, only: [:new, :create]
   end
 
+  resources :reviews, only: [:destroy]
+
   # Upvote and Downvote on Excursion
   resources :excursions do
     member do

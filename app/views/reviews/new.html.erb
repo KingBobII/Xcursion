@@ -1,7 +1,10 @@
-<%= simple_form_for [@excursion, @review] do |form| %>
-  <%= form.input :content, label: 'Review Content' %>
-  <%= form.input :user_rating, label: 'Rating', as: :select, collection: 1..5 %>
-  <%= form.association :excursion, label: 'Excursion' %>
+<div class="container new-review">
+  <h1 class="text-center">ADD A REVIEW</h1>
+  <%= simple_form_for [@excursion, @review] do |form| %>
+    <%= form.input :content, label: 'Review Content' %>
+    <%= form.input :user_rating, label: 'Rating', as: :select, collection: 1..5 %>
+    <%# <%= form.association :excursion, label: 'Excursion' %>
 
-  <%= form.button :submit, class: 'btn btn-primary' %>
-<% end %>
+    <%= form.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>

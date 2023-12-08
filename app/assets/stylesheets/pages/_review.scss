@@ -1,0 +1,29 @@
+.review-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.show-review-card {
+  // border: 1px solid red;
+  padding: 1.5rem;
+  background-color: rgb(239, 239, 239);
+  border-radius: 8px;
+
+  p {
+    color: gray;
+    font-weight: normal;
+  }
+
+  h5 {
+    margin: 0;
+  }
+
+  i {
+    margin-left: 0.5rem;
+  }
+}
+
+.container-rating {
+  color: #FEC65B;
+}
