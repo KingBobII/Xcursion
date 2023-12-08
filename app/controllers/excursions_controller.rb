@@ -35,7 +35,7 @@ class ExcursionsController < ApplicationController
   def show
     @excursion = Excursion.find(params[:id])
     # @my_itineraries = current_user.itineraries
-    # @itinerary =
+    @itinerary_excursion = ItineraryExcursion.new
   end
 
   def new

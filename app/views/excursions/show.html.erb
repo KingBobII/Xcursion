@@ -28,13 +28,17 @@
         </div>
     </div>
     <hr>
- <!--   <div>-->
-      <%#= simple_form_for [@excursion, ItineraryExcursion.new] do |f| %>
-        <%#= f.associartion :itinerary, collection: @my_itineraries %>
-        <%#= f.hidden_field :excursion_id, value: @excursion.id %>
-        <%#= f.button :submit, "Add to Itinerary" %>
-      <%# end %>
-<!--    </div>-->
+
+ <div>
+      <%= simple_form_for [@excursion, @itinerary_excursion] do |f| %>
+        <%= f.association :itinerary, collection: Itinerary.all %>
+        <%= f.hidden_field :excursion_id, value: @excursion.id %>
+        <%= f.button :submit, "Add to Itinerary" %>
+      <% end %>
+</div>
+
+
+
     <div class="reviews">
         <% if @excursion.reviews.present? %>
             <h2>Latest Reviews</h2>
