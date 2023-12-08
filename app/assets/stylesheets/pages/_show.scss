@@ -56,13 +56,13 @@ justify-content: left;
   display: flex; /* This sets the container as a flex container */
   justify-content: left; /* Distributes items evenly */
 }
-// .container-sugggestions{
+// .container-suggestions{
 //   display: grid;
 //   grid-template-columns: repeat(2, 1fr);
 //   grid-gap: 1rem;
 //   border-radius: 10px;
 // }
-.container-sugggestions {
+.container-suggestions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
@@ -98,4 +98,6 @@ li {
   margin-top: 20px;
 }
 
-/* Style the form inputs as needed */
+.ai-suggestions {
+  border-bottom: 5px solid darkgray;
+}
