@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get 'search_excursions', to: 'search_excursions#search', as: :search_excursions
     end
     resources :reviews
+    resources :itinerary_excursions, only: [:new, :create]
   end
 
   resources :reviews, only: [:destroy]
