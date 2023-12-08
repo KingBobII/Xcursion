@@ -14,24 +14,24 @@
         <% if user_signed_in? %>
 
   <div class="d-flex align-items-center">
-          <li class="nav-item dropdown">
+          <!--<li class="nav-item dropdown">
   <a class="nav-link btn btn-outline-info me-2 dropdown-toggle" href="#" id="navbarDropdownExcursions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Excursions
+    Excursions-->
   </a>
-  <ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdownExcursions">
-    <li><%= link_to "View All", excursions_path, class: "dropdown-item text-white" %></li>
-    <li><%= link_to "Create New", new_excursion_path, class: "dropdown-item text-white" %></li>
-    <li><%= link_to "Inspire Me",  new_inspiration_path, class: "dropdown-item text-white" %></li>
-  </ul>
+    <li style="margin-left: 10px;"><%= link_to "Inspire Me",  new_inspiration_path, class: "dropdown-item text-white" %></li>
+    <li style="margin-left: 10px;"><%= link_to "View Excursions", excursions_path, class: "dropdown-item text-white" %></li>
+    <li style="margin-left: 10px;"><%= link_to "Create New Excursion", new_excursion_path, class: "dropdown-item text-white" %></li>
+  <!--<ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdownExcursions">
+  </ul>-->
 
           <li class="nav-item dropdown">
-  <a class="nav-link btn btn-outline-info me-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <!--<a class="nav-link btn btn-outline-info me-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     My itineraries
-  </a>
-  <ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdown">
-    <li><%= link_to "View All", itineraries_path, class: "dropdown-item text-white" %></li>
-    <li><%= link_to "Create New", new_itinerary_path, class: "dropdown-item text-white" %></li>
-  </ul>
+  </a>-->
+    <li style="margin-left: 10px;"><%= link_to "View Itineraries", itineraries_path, class: "dropdown-item text-white" %></li>
+    <li style="margin-left: 10px;"><%= link_to "Create New Itinerary", new_itinerary_path, class: "dropdown-item text-white" %></li>
+  <!--<ul class="dropdown-menu dropdown-custom-color" aria-labelledby="navbarDropdown">
+  </ul>-->
 </li>
 
           <li class="nav-item dropdown">
